@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useApp } from '../context/AppContext';
 import GradientText from './react-bits/GradientText';
 
 const GithubIcon = ({ size = 24, ...props }) => (
@@ -61,6 +62,7 @@ import Magnetic from './react-bits/Magnetic';
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+  const { t } = useApp();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,10 +83,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full py-24 md:py-32 bg-[#0a0a0d] overflow-hidden">
+    <section id="contact" className="relative w-full py-24 md:py-32 bg-dark-bg-alt overflow-hidden">
       {/* Ambient backgrounds */}
-      <div className="absolute top-[30%] left-[10%] w-[35vw] h-[35vw] bg-[#2563eb]/5 rounded-full glow-blur pointer-events-none" />
-      <div className="absolute bottom-[10%] right-[10%] w-[30vw] h-[30vw] bg-[#7c3aed]/5 rounded-full glow-blur pointer-events-none" />
+      <div className="absolute top-[30%] left-[10%] w-[35vw] h-[35vw] bg-accent-blue/5 rounded-full glow-blur pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[10%] w-[30vw] h-[30vw] bg-accent-purple/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
@@ -92,12 +94,12 @@ export default function Contact() {
           
           {/* Left Column: CTA Info */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <span className="text-xs font-bold tracking-widest text-[#2563eb] uppercase mb-4 block">GET IN TOUCH</span>
-            <h2 className="font-display font-black text-4xl md:text-6xl text-white mb-6 tracking-tight leading-tight">
-              Let's Build Something <GradientText>Extraordinary</GradientText>
+            <span className="text-xs font-bold tracking-widest text-accent-blue uppercase mb-4 block">{t.contact.tag}</span>
+            <h2 className="font-display font-black text-4xl md:text-6xl text-text-primary mb-6 tracking-tight leading-tight">
+              {t.contact.headline} <GradientText>{t.contact.headlineAccent}</GradientText>
             </h2>
-            <p className="font-sans text-base md:text-lg text-[#94a3b8] mb-10 leading-relaxed">
-              Have a web system, brand layout, or creative campaign video that needs premium execution? Reach out and let's craft a memorable digital product.
+            <p className="font-sans text-base md:text-lg text-text-secondary mb-10 leading-relaxed">
+              {t.contact.desc}
             </p>
 
             {/* Quick Contact links */}
@@ -105,12 +107,12 @@ export default function Contact() {
               
               {/* Mail */}
               <div className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-xl border border-white/5 bg-[#0e0e12]/60 hover:bg-[#2563eb]/20 text-[#94a3b8] group-hover:text-white group-hover:border-[#2563eb]/20 flex items-center justify-center transition-all duration-300">
+                <div className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-accent-blue/20 text-text-secondary group-hover:text-text-primary group-hover:border-accent-blue/20 flex items-center justify-center transition-all duration-300">
                   <Mail size={18} />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold tracking-widest text-[#64748b] uppercase block">Email Me</span>
-                  <a href="mailto:radityaabib511@gmail.com" className="text-sm font-semibold text-white hover:text-[#2563eb] transition-colors">
+                  <span className="text-[10px] font-bold tracking-widest text-text-muted uppercase block">{t.contact.emailLabel}</span>
+                  <a href="mailto:radityaabib511@gmail.com" className="text-sm font-semibold text-text-primary hover:text-accent-blue transition-colors">
                     radityaabib511@gmail.com
                   </a>
                 </div>
@@ -122,7 +124,7 @@ export default function Contact() {
                     href="https://github.com/radityaabib"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl border border-white/5 bg-[#0e0e12]/60 hover:bg-white/5 hover:border-white/20 text-[#94a3b8] hover:text-white flex items-center justify-center transition-all duration-300"
+                    className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-dark-card hover:border-border-subtle/50 text-text-secondary hover:text-text-primary flex items-center justify-center transition-all duration-300"
                     aria-label="GitHub Profile"
                   >
                     <GithubIcon size={20} />
@@ -133,7 +135,7 @@ export default function Contact() {
                     href="https://linkedin.com/in/radityaabib"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl border border-white/5 bg-[#0e0e12]/60 hover:bg-[#2563eb]/20 hover:border-[#2563eb]/30 text-[#94a3b8] hover:text-white flex items-center justify-center transition-all duration-300"
+                    className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-accent-blue/20 hover:border-accent-blue/30 text-text-secondary hover:text-text-primary flex items-center justify-center transition-all duration-300"
                     aria-label="LinkedIn Profile"
                   >
                     <LinkedinIcon size={20} />
@@ -144,7 +146,7 @@ export default function Contact() {
                     href="https://www.instagram.com/radityaabib"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl border border-white/5 bg-[#0e0e12]/60 hover:bg-[#2563eb]/20 hover:border-[#2563eb]/30 text-[#94a3b8] hover:text-white flex items-center justify-center transition-all duration-300"
+                    className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-accent-blue/20 hover:border-accent-blue/30 text-text-secondary hover:text-text-primary flex items-center justify-center transition-all duration-300"
                     aria-label="Instagram Profile"
                   >
                     <InstagramIcon size={20} />
@@ -157,7 +159,7 @@ export default function Contact() {
 
           {/* Right Column: Interactive Form */}
           <div className="lg:col-span-7">
-            <SpotlightCard className="p-8 md:p-10 border border-white/5 bg-[#0e0e12]/60 rounded-3xl shadow-2xl relative">
+            <SpotlightCard className="p-8 md:p-10 border border-border-subtle bg-dark-card/60 squircle-lg shadow-2xl relative">
               
               <AnimatePresence mode="wait">
                 
@@ -169,18 +171,18 @@ export default function Contact() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="flex flex-col items-center justify-center py-16 text-center"
                   >
-                    <div className="w-16 h-16 rounded-full bg-[#2563eb]/10 border border-[#2563eb]/20 text-[#2563eb] flex items-center justify-center mb-6">
+                    <div className="w-16 h-16 rounded-full bg-accent-blue/10 border border-accent-blue/20 text-accent-blue flex items-center justify-center mb-6">
                       <CheckCircle size={32} />
                     </div>
-                    <h3 className="font-display font-bold text-2xl text-white mb-2">Message Sent!</h3>
-                    <p className="font-sans text-sm text-[#94a3b8] max-w-sm">
-                      Thank you for reaching out. I've received your query and will reply within 24 hours.
+                    <h3 className="font-display font-bold text-2xl text-text-primary mb-2">{t.contact.successHeadline}</h3>
+                    <p className="font-sans text-sm text-text-secondary max-w-sm">
+                      {t.contact.successDesc}
                     </p>
                     <button
                       onClick={() => setStatus('idle')}
-                      className="mt-8 px-6 py-2.5 rounded-full border border-white/10 text-xs font-semibold text-[#94a3b8] hover:text-white hover:border-white/20 transition-all cursor-pointer"
+                      className="mt-8 px-6 py-2.5 rounded-full border border-border-subtle text-xs font-semibold text-text-secondary hover:text-text-primary hover:border-border-subtle/30 transition-all cursor-pointer bg-dark-card"
                     >
-                      Send Another Message
+                      {t.contact.btnReset}
                     </button>
                   </motion.div>
                 ) : (
@@ -193,8 +195,8 @@ export default function Contact() {
                   >
                     {/* Name input */}
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="name" className="text-[10px] font-bold tracking-widest text-[#64748b] uppercase">
-                        Full Name
+                      <label htmlFor="name" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
+                        {t.contact.formLabelName}
                       </label>
                       <input
                         type="text"
@@ -204,15 +206,15 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         disabled={status === 'sending'}
-                        placeholder="Your name"
-                        className="w-full px-5 py-4 rounded-xl border border-white/5 bg-white/2 focus:bg-white/5 focus:border-[#2563eb]/50 text-white placeholder-slate-700 font-sans text-sm outline-none transition-all"
+                        placeholder={t.contact.formPlaceholderName}
+                        className="w-full px-5 py-4 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
                       />
                     </div>
 
                     {/* Email input */}
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="email" className="text-[10px] font-bold tracking-widest text-[#64748b] uppercase">
-                        Email Address
+                      <label htmlFor="email" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
+                        {t.contact.formLabelEmail}
                       </label>
                       <input
                         type="email"
@@ -222,15 +224,15 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         disabled={status === 'sending'}
-                        placeholder="hello@example.com"
-                        className="w-full px-5 py-4 rounded-xl border border-white/5 bg-white/2 focus:bg-white/5 focus:border-[#2563eb]/50 text-white placeholder-slate-700 font-sans text-sm outline-none transition-all"
+                        placeholder={t.contact.formPlaceholderEmail}
+                        className="w-full px-5 py-4 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
                       />
                     </div>
 
                     {/* Message input */}
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="message" className="text-[10px] font-bold tracking-widest text-[#64748b] uppercase">
-                        Your Message
+                      <label htmlFor="message" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
+                        {t.contact.formLabelMessage}
                       </label>
                       <textarea
                         name="message"
@@ -240,8 +242,8 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleInputChange}
                         disabled={status === 'sending'}
-                        placeholder="Hi Aria, let's collaborate on..."
-                        className="w-full px-5 py-4 rounded-xl border border-white/5 bg-white/2 focus:bg-white/5 focus:border-[#2563eb]/50 text-white placeholder-slate-700 font-sans text-sm outline-none transition-all resize-none"
+                        placeholder={t.contact.formPlaceholderMessage}
+                        className="w-full px-5 py-4 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all resize-none"
                       />
                     </div>
 
@@ -251,16 +253,16 @@ export default function Contact() {
                         <button
                           type="submit"
                           disabled={status === 'sending'}
-                          className="px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wider uppercase bg-white text-black hover:bg-[#2563eb] hover:text-white transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto shadow-md shadow-white/5 cursor-pointer disabled:opacity-50"
+                          className="px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wider uppercase bg-text-primary text-dark-bg hover:bg-accent-blue hover:text-text-primary transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto shadow-md shadow-text-primary/5 cursor-pointer disabled:opacity-50"
                         >
                           {status === 'sending' ? (
                             <>
-                              Sending Message...
+                              {t.contact.btnSubmitting}
                               <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                             </>
                           ) : (
                             <>
-                              Send Message
+                              {t.contact.btnSubmit}
                               <Send size={16} />
                             </>
                           )}
@@ -282,3 +284,5 @@ export default function Contact() {
     </section>
   );
 }
+
+

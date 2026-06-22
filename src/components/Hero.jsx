@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Film, Code, Compass, ArrowRight } from 'lucide-react';
+import { useApp } from '../context/AppContext';
 
 const GithubIcon = ({ size = 24, ...props }) => (
   <svg
@@ -56,11 +57,11 @@ const InstagramIcon = ({ size = 24, ...props }) => (
 );
 import Magnetic from './react-bits/Magnetic';
 import SplitText from './react-bits/SplitText';
-import BlurText from './react-bits/BlurText';
-import GradientText from './react-bits/GradientText';
 import RotatingText from './react-bits/RotatingText';
 
 export default function Hero() {
+  const { t, lang } = useApp();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -92,21 +93,39 @@ export default function Hero() {
     }
   };
 
+  const roles = lang === 'en'
+    ? [
+        'Graphic Designer',
+        'UI/UX Designer',
+        'Web Developer',
+        'Translator',
+        'Videographer',
+        'Photographer',
+        'Video Editor',
+        'Photo Editor'
+      ]
+    : [
+        'Desainer Grafis',
+        'Desainer UI/UX',
+        'Developer Web',
+        'Penerjemah',
+        'Videografer',
+        'Fotografer',
+        'Editor Video',
+        'Editor Foto'
+      ];
+
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#070709] pt-32 pb-24"
-      style={{
-        backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
-      }}
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-dark-bg body-pattern pt-32 pb-32"
     >
       {/* Background Radial Glow Effects */}
-      <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] bg-[#2563eb]/10 rounded-full glow-blur pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[10%] w-[35vw] h-[35vw] bg-[#7c3aed]/10 rounded-full glow-blur pointer-events-none" />
+      <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] bg-accent-blue/10 rounded-full glow-blur pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[10%] w-[35vw] h-[35vw] bg-accent-purple/10 rounded-full glow-blur pointer-events-none" />
 
       {/* Grid lines overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className="absolute inset-0 grid-overlay [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 flex flex-col items-center text-center">
         <motion.div
@@ -118,22 +137,13 @@ export default function Hero() {
           {/* Subtitle Badge */}
           <motion.div
             variants={childVariants}
-            className="mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center gap-2 text-xs md:text-sm font-semibold tracking-wider text-[#94a3b8]"
+            className="mb-6 px-4 py-1.5 rounded-full border border-border-subtle bg-dark-card/30 backdrop-blur-md flex items-center gap-2 text-xs md:text-sm font-semibold tracking-wider text-text-secondary"
           >
-            <span className="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse" />
-            <span>Hello I'm </span>
+            <span className="w-2 h-2 rounded-md bg-accent-blue animate-pulse" />
+            <span>{lang === 'en' ? "Hello I'm " : "Halo Saya "}</span>
             <RotatingText
-              texts={[
-                'Graphics Designer',
-                'UI/UX Designer',
-                'Web Developer',
-                'Translator',
-                'Videographer',
-                'Photographer',
-                'Video Editor',
-                'Photo Editor'
-              ]}
-              mainClassName="text-[#2563eb] font-bold inline-flex px-2 py-0.5 rounded-lg bg-[#2563eb]/10 border border-[#2563eb]/20 ml-1"
+              texts={roles}
+              mainClassName="text-accent-blue font-bold inline-flex px-2 py-0.5 rounded-full bg-accent-blue/10 border border-accent-blue/20 ml-1"
               staggerFrom="last"
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -146,27 +156,20 @@ export default function Hero() {
           </motion.div>
 
           {/* Large Hero Headline */}
-          <h1 className="font-display font-black tracking-tight text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-none text-center w-full flex flex-col items-center justify-center">
+          <h1 className="font-display font-black tracking-tight text-text-primary text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-none text-center w-full flex flex-col mb-5">
             <SplitText
               text="Raditya Abib"
               className="inline-block"
               stagger={0.08}
             />
-            <GradientText className="inline-flex mt-2">
-              <BlurText
-                text="Video Editor."
-                delay={0.6}
-                stagger={0.06}
-              />
-            </GradientText>
           </h1>
 
           {/* Subheadline */}
           <motion.p
             variants={childVariants}
-            className="max-w-2xl text-base md:text-xl text-[#94a3b8] font-sans leading-relaxed mb-10"
+            className="max-w-2xl text-base md:text-xl text-text-secondary font-sans leading-relaxed mb-10"
           >
-            I craft immersive digital experiences by blending clean frontend development, premium visual design, and cinematic motion graphics.
+            {t.hero.description}
           </motion.p>
 
           {/* Call To Actions */}
@@ -178,9 +181,9 @@ export default function Hero() {
               <a
                 href="#projects"
                 onClick={(e) => handleScrollTo(e, '#projects')}
-                className="group px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide bg-white text-black hover:bg-[#2563eb] hover:text-white transition-all duration-300 flex items-center gap-2 shadow-lg shadow-white/5 hover:shadow-[#2563eb]/20"
+                className="group px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide bg-text-primary text-dark-bg hover:bg-accent-blue hover:text-text-primary transition-all duration-300 flex items-center gap-2 shadow-lg shadow-text-primary/5 hover:shadow-accent-blue/20"
               >
-                View Selected Work
+                {t.hero.ctaWork}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
             </Magnetic>
@@ -189,9 +192,9 @@ export default function Hero() {
               <a
                 href="#contact"
                 onClick={(e) => handleScrollTo(e, '#contact')}
-                className="px-8 py-4 rounded-full font-sans font-semibold text-sm tracking-wide border border-white/10 hover:border-white/30 text-white bg-white/5 hover:bg-white/10 transition-colors"
+                className="px-8 py-4 rounded-full font-sans font-semibold text-sm tracking-wide border border-border-subtle hover:border-border-subtle/30 text-text-primary bg-dark-card/30 hover:bg-dark-card/50 transition-colors"
               >
-                Get In Touch
+                {t.hero.ctaTalk}
               </a>
             </Magnetic>
           </motion.div>
@@ -203,7 +206,7 @@ export default function Hero() {
                 href="https://github.com/radityaabib"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#94a3b8] hover:text-white transition-colors"
+                className="text-text-secondary hover:text-text-primary transition-colors"
                 aria-label="GitHub"
               >
                 <GithubIcon size={20} />
@@ -214,7 +217,7 @@ export default function Hero() {
                 href="https://linkedin.com/in/radityaabib"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#94a3b8] hover:text-white transition-colors"
+                className="text-text-secondary hover:text-text-primary transition-colors"
                 aria-label="LinkedIn"
               >
                 <LinkedinIcon size={20} />
@@ -225,7 +228,7 @@ export default function Hero() {
                 href="https://www.instagram.com/radityaabib"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#94a3b8] hover:text-white transition-colors"
+                className="text-text-secondary hover:text-text-primary transition-colors"
                 aria-label="Instagram"
               >
                 <InstagramIcon size={20} />
@@ -240,10 +243,10 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-2xl glass-panel text-[#2563eb]"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-2xl glass-panel text-accent-blue"
         >
           <Code size={18} />
-          <span className="text-xs font-bold text-white tracking-widest uppercase">React.js</span>
+          <span className="text-xs font-bold text-text-primary tracking-widest uppercase">React.js</span>
         </motion.div>
       </div>
 
@@ -251,10 +254,10 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 20, 0], rotate: [0, -6, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-2xl glass-panel text-[#7c3aed]"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-2xl glass-panel text-accent-purple"
         >
           <Compass size={18} />
-          <span className="text-xs font-bold text-white tracking-widest uppercase">Design</span>
+          <span className="text-xs font-bold text-text-primary tracking-widest uppercase">{lang === 'en' ? "Design" : "Desain"}</span>
         </motion.div>
       </div>
 
@@ -265,9 +268,11 @@ export default function Hero() {
           className="flex items-center gap-3 px-4 py-2.5 rounded-2xl glass-panel text-fuchsia-500"
         >
           <Film size={18} />
-          <span className="text-xs font-bold text-white tracking-widest uppercase">Motion</span>
+          <span className="text-xs font-bold text-text-primary tracking-widest uppercase">{lang === 'en' ? "Motion" : "Gerak"}</span>
         </motion.div>
       </div>
     </section>
   );
+
 }
+

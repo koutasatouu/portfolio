@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useApp } from '../context/AppContext';
 
 export default function Loading() {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
-  const words = ["DESIGN", "DEVELOP", "EDIT", "MOTION", "CREATE"];
+  const { lang } = useApp();
+
+  const words = lang === 'en'
+    ? ["DESIGN", "DEVELOP", "EDIT", "MOTION", "CREATE"]
+    : ["DESAIN", "KEMBANGKAN", "EDIT", "GERAK", "BUAT"];
+
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {
@@ -41,7 +47,7 @@ export default function Loading() {
     }, 150);
 
     return () => clearInterval(wordTimer);
-  }, [visible]);
+  }, [visible, words.length]);
 
   return (
     <AnimatePresence>
@@ -57,7 +63,9 @@ export default function Loading() {
           {/* Top Row: Brand & Status */}
           <div className="flex justify-between items-start">
             <span className="font-display font-bold text-lg tracking-wider text-white">RADITYA.DEV</span>
-            <span className="text-sm font-sans tracking-widest text-[#94a3b8] uppercase">SYSTEM ONLINE</span>
+            <span className="text-sm font-sans tracking-widest text-[#94a3b8] uppercase">
+              {lang === 'en' ? "SYSTEM ONLINE" : "SISTEM AKTIF"}
+            </span>
           </div>
 
           {/* Middle Row: Large Word Indicator */}
@@ -81,7 +89,9 @@ export default function Loading() {
           {/* Bottom Row: Percentage Counter & Bar */}
           <div className="flex flex-col gap-4">
             <div className="flex justify-between items-end">
-              <span className="text-xs md:text-sm tracking-widest text-[#64748b]">INITIALIZING CORE ASSETS</span>
+              <span className="text-xs md:text-sm tracking-widest text-[#64748b]">
+                {lang === 'en' ? "INITIALIZING CORE ASSETS" : "MENGINISIALISASI ASET UTAMA"}
+              </span>
               <span className="font-display font-bold text-5xl md:text-7xl tabular-nums text-white">
                 {progress}%
               </span>
@@ -99,3 +109,4 @@ export default function Loading() {
     </AnimatePresence>
   );
 }
+

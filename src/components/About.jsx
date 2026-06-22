@@ -1,35 +1,25 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, BookOpen, Layers, Terminal, ChevronDown } from 'lucide-react';
+import { Award, Layers, Terminal, ChevronDown } from 'lucide-react';
 import SpotlightCard from './react-bits/SpotlightCard';
 import ProfileCard from './react-bits/ProfileCard';
 import GradientText from './react-bits/GradientText';
-
-const philosophies = [
-  {
-    title: 'Code + Motion + Design',
-    icon: Layers,
-    description: 'I believe digital products shouldn\'t just work—they should feel alive. By combining backend structure, frontend interactive layers, and motion graphics, I create memorable experiences.',
-  },
-  {
-    title: 'Engineered Precision',
-    icon: Terminal,
-    description: 'With my academic background in Software Engineering and Informatics, I write clean, modular, and optimized code that powers seamless, lightning-fast animations.',
-  },
-  {
-    title: 'Aesthetic Focus',
-    icon: Award,
-    description: 'No details are minor. I refine shadows, micro-interactions, font-weight scales, and layout alignments to create Apple-grade editorial digital designs.',
-  },
-];
+import { useApp } from '../context/AppContext';
 
 export default function About() {
   const [openPhilosophy, setOpenPhilosophy] = useState(0);
+  const { t, lang } = useApp();
+
+  const philoIcons = [Layers, Terminal, Award];
+  const philoItems = (t.about.philosophies || []).map((item, index) => ({
+    ...item,
+    icon: philoIcons[index] || Layers
+  }));
 
   return (
-    <section id="about" className="relative w-full py-24 md:py-32 bg-[#070709] overflow-hidden">
+    <section id="about" className="relative w-full py-24 md:py-32 bg-dark-bg overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-[40%] right-[5%] w-[25vw] h-[25vw] bg-[#7c3aed]/5 rounded-full glow-blur pointer-events-none" />
+      <div className="absolute top-[40%] right-[5%] w-[25vw] h-[25vw] bg-accent-purple/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -38,10 +28,10 @@ export default function About() {
           <div className="lg:col-span-5 flex justify-center items-center">
             <ProfileCard
               name="Raditya Abib"
-              title="Designer & Developer"
+              title={lang === 'en' ? "Designer & Developer" : "Desainer & Developer"}
               handle="radityaabib"
-              status="Available for Projects"
-              contactText="Let's Talk"
+              status={lang === 'en' ? "Available for Projects" : "Tersedia untuk Proyek"}
+              contactText={t.navbar.cta}
               avatarUrl="/me.png"
               showUserInfo={true}
               enableTilt={true}
@@ -51,49 +41,49 @@ export default function About() {
                 if (section) section.scrollIntoView({ behavior: 'smooth' });
               }}
               behindGlowEnabled={true}
-              behindGlowColor="rgba(53, 134, 209, 0.76)"
+              behindGlowColor="rgba(37, 99, 235, 0.4)"
               innerGradient="linear-gradient(145deg, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%)"
             />
           </div>
 
           {/* Right Column: Bio / Info */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <span className="text-xs font-bold tracking-widest text-[#2563eb] uppercase mb-4 block">ABOUT ME</span>
-            <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-6 tracking-tight leading-tight">
-              Bridging the Gap Between <GradientText>Logic & Aesthetics</GradientText>
+            <span className="text-xs font-bold tracking-widest text-accent-blue uppercase mb-4 block">{t.about.tag}</span>
+            <h2 className="font-display font-bold text-3xl md:text-5xl text-text-primary mb-6 tracking-tight leading-tight">
+              {t.about.headline} <GradientText>{t.about.headlineAccent}</GradientText>
             </h2>
 
-            <p className="font-sans text-base md:text-lg text-[#94a3b8] mb-8 leading-relaxed">
-              With a background in Software Engineering and currently pursuing Informatics, I position myself at the intersection of technical architecture and visual design. I don't just develop layouts; I create digital systems that blend premium interactive frontends with clean, robust backend code and high-end video animations.
+            <p className="font-sans text-base md:text-lg text-text-secondary mb-8 leading-relaxed">
+              {t.about.desc}
             </p>
 
             {/* Quick stats grid */}
             <div className="grid grid-cols-3 gap-6 mb-10">
-              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center">
-                <span className="font-display font-black text-2xl md:text-4xl text-white block">4+</span>
-                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-[#64748b] uppercase mt-2">Years Active</span>
+              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center bg-dark-card border border-border-subtle">
+                <span className="font-display font-black text-2xl md:text-4xl text-text-primary block">4+</span>
+                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-muted uppercase mt-2">{t.about.stat1}</span>
               </SpotlightCard>
-              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center">
-                <span className="font-display font-black text-2xl md:text-4xl text-[#2563eb] block">25+</span>
-                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-[#64748b] uppercase mt-2">Projects Done</span>
+              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center bg-dark-card border border-border-subtle">
+                <span className="font-display font-black text-2xl md:text-4xl text-accent-blue block">25+</span>
+                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-muted uppercase mt-2">{t.about.stat2}</span>
               </SpotlightCard>
-              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center">
-                <span className="font-display font-black text-2xl md:text-4xl text-white block">15+</span>
-                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-[#64748b] uppercase mt-2">Happy Clients</span>
+              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center bg-dark-card border border-border-subtle">
+                <span className="font-display font-black text-2xl md:text-4xl text-text-primary block">15+</span>
+                <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-muted uppercase mt-2">{t.about.stat3}</span>
               </SpotlightCard>
             </div>
 
             {/* Philosophies Accordion */}
             <div className="flex flex-col gap-3">
-              {philosophies.map((philo, index) => {
+              {philoItems.map((philo, index) => {
                 const Icon = philo.icon;
                 const isOpen = openPhilosophy === index;
                 return (
                   <div
                     key={philo.title}
-                    className={`rounded-xl border transition-all duration-300 ${isOpen
-                      ? 'border-white/15 bg-white/5'
-                      : 'border-white/5 bg-[#0e0e12]/30 hover:border-white/10'
+                    className={`squircle-sm border transition-all duration-300 ${isOpen
+                      ? 'border-border-subtle bg-dark-card/50'
+                      : 'border-border-subtle/50 bg-dark-card/20 hover:border-border-subtle'
                       }`}
                   >
                     <button
@@ -101,14 +91,14 @@ export default function About() {
                       className="w-full px-5 py-4 flex justify-between items-center text-left"
                     >
                       <div className="flex items-center gap-4">
-                        <div className={`p-2 rounded-lg ${isOpen ? 'bg-[#2563eb]/20 text-[#2563eb]' : 'bg-white/5 text-[#94a3b8]'}`}>
+                        <div className={`p-2 squircle-sm ${isOpen ? 'bg-accent-blue/20 text-accent-blue' : 'bg-dark-card/40 text-text-secondary'}`}>
                           <Icon size={18} />
                         </div>
-                        <span className="font-display font-bold text-sm md:text-base text-white">{philo.title}</span>
+                        <span className="font-display font-bold text-sm md:text-base text-text-primary">{philo.title}</span>
                       </div>
                       <ChevronDown
                         size={18}
-                        className={`text-[#64748b] transition-transform duration-300 ${isOpen ? 'rotate-180 text-white' : ''}`}
+                        className={`text-text-muted transition-transform duration-300 ${isOpen ? 'rotate-180 text-text-primary' : ''}`}
                       />
                     </button>
 
@@ -121,7 +111,7 @@ export default function About() {
                           transition={{ duration: 0.3, ease: 'easeInOut' }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 pb-5 pt-1 text-xs md:text-sm text-[#94a3b8] leading-relaxed border-t border-white/5 mt-1 pl-[3.25rem]">
+                          <div className="px-5 pb-5 pt-1 text-xs md:text-sm text-text-secondary leading-relaxed border-t border-border-subtle mt-1 pl-[3.25rem]">
                             {philo.description}
                           </div>
                         </motion.div>
@@ -132,9 +122,11 @@ export default function About() {
               })}
             </div>
 
+
           </div>
         </div>
       </div>
     </section>
   );
 }
+

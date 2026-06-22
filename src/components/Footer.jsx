@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowUp, Mail } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import Magnetic from './react-bits/Magnetic';
+import { useApp } from '../context/AppContext';
 
 const GithubIcon = ({ size = 24, ...props }) => (
   <svg
@@ -56,6 +57,8 @@ const InstagramIcon = ({ size = 24, ...props }) => (
 );
 
 export default function Footer() {
+  const { t } = useApp();
+
   const handleScrollToTop = (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -69,8 +72,16 @@ export default function Footer() {
     }
   };
 
+  const links = [
+    { key: 'home', label: t.navbar.home },
+    { key: 'about', label: t.navbar.about },
+    { key: 'projects', label: t.navbar.projects },
+    { key: 'experience', label: t.navbar.experience },
+    { key: 'contact', label: t.navbar.contact }
+  ];
+
   return (
-    <footer className="w-full bg-[#070709] border-t border-white/5 py-12 md:py-16 overflow-hidden relative">
+    <footer className="w-full bg-dark-bg border-t border-border-subtle py-12 md:py-16 overflow-hidden relative z-[700]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
         
         {/* Left: Brand logo & copyright */}
@@ -78,25 +89,25 @@ export default function Footer() {
           <a
             href="#home"
             onClick={handleScrollToTop}
-            className="font-display font-black text-lg tracking-wider text-white"
+            className="font-display font-black text-lg tracking-wider text-text-primary"
           >
-            RADITYA<span className="text-[#2563eb]">.DEV</span>
+            RADITYA<span className="text-accent-blue">.DEV</span>
           </a>
-          <span className="text-xs font-sans text-[#64748b] tracking-wide">
-            © {new Date().getFullYear()} Raditya Abib. All rights reserved.
+          <span className="text-xs font-sans text-text-muted tracking-wide">
+            © {new Date().getFullYear()} Raditya Abib. {t.footer.copyright}
           </span>
         </div>
 
         {/* Center: Quick navigation links */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-          {['home', 'about', 'projects', 'experience', 'contact'].map((section) => (
+          {links.map((link) => (
             <a
-              key={section}
-              href={`#${section}`}
-              onClick={(e) => handleLinkClick(e, `#${section}`)}
-              className="text-xs font-sans font-semibold tracking-wider text-[#94a3b8] hover:text-white uppercase transition-colors"
+              key={link.key}
+              href={`#${link.key}`}
+              onClick={(e) => handleLinkClick(e, `#${link.key}`)}
+              className="text-xs font-sans font-semibold tracking-wider text-text-secondary hover:text-text-primary uppercase transition-colors"
             >
-              {section}
+              {link.label}
             </a>
           ))}
         </div>
@@ -109,7 +120,7 @@ export default function Footer() {
               href="https://github.com/radityaabib"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#64748b] hover:text-white transition-colors"
+              className="text-text-muted hover:text-text-primary transition-colors"
               aria-label="GitHub"
             >
               <GithubIcon size={18} />
@@ -118,7 +129,7 @@ export default function Footer() {
               href="https://linkedin.com/in/radityaabib"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#64748b] hover:text-white transition-colors"
+              className="text-text-muted hover:text-text-primary transition-colors"
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={18} />
@@ -127,7 +138,7 @@ export default function Footer() {
               href="https://www.instagram.com/radityaabib"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#64748b] hover:text-white transition-colors"
+              className="text-text-muted hover:text-text-primary transition-colors"
               aria-label="Instagram"
             >
               <InstagramIcon size={18} />
@@ -138,7 +149,7 @@ export default function Footer() {
           <Magnetic range={25} strength={0.3}>
             <button
               onClick={handleScrollToTop}
-              className="w-10 h-10 rounded-full border border-white/10 hover:border-white/20 bg-[#0e0e12]/60 hover:bg-white/5 text-white flex items-center justify-center transition-colors cursor-pointer"
+              className="w-10 h-10 rounded-full border border-border-subtle hover:border-border-subtle/50 bg-dark-card/60 hover:bg-dark-card-hover/40 text-text-primary flex items-center justify-center transition-colors cursor-pointer"
               aria-label="Back to top"
             >
               <ArrowUp size={16} />
@@ -149,4 +160,6 @@ export default function Footer() {
       </div>
     </footer>
   );
+
 }
+

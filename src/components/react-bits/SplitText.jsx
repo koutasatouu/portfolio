@@ -44,7 +44,7 @@ export default function SplitText({
       viewport={{ once: true, margin: "-10%" }}
     >
       {words.map((word, index) => (
-        <span key={index} className="inline-block overflow-hidden mr-[0.25em] last:mr-0 py-[0.1em]">
+        <span key={index} className="inline-block align-top overflow-hidden mr-[0.25em] last:mr-0 py-[0.1em]">
           <motion.span className="inline-block" variants={childVariants}>
             {word === "" ? "\u00A0" : word}
           </motion.span>

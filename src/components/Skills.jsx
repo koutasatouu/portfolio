@@ -55,7 +55,7 @@ export default function Skills() {
       <div className="absolute bottom-[20%] left-[10%] w-[25vw] h-[25vw] bg-[#2563eb]/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Section Header */}
         <div className="mb-16 md:mb-24 text-center max-w-xl mx-auto">
           <span className="text-xs font-bold tracking-widest text-[#2563eb] uppercase mb-4 block">EXPERTISE MATRIX</span>
@@ -78,7 +78,7 @@ export default function Skills() {
               >
                 {/* Header Icon + Label */}
                 <div className="flex items-center gap-4 mb-8">
-                  <div className={`p-3 rounded-xl border ${category.color}`}>
+                  <div className={`p-3 squircle-sm border ${category.color}`}>
                     <Icon size={22} />
                   </div>
                   <h3 className="font-display font-extrabold text-xl text-white tracking-wide uppercase">
@@ -105,7 +105,7 @@ export default function Skills() {
                         </div>
                         <span className="text-[10px] md:text-xs font-display font-bold text-[#64748b]">{skill.level}%</span>
                       </div>
-                      
+
                       {/* Progress Line */}
                       <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
                         <motion.div
@@ -113,13 +113,12 @@ export default function Skills() {
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true, margin: "-5%" }}
                           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }}
-                          className={`h-full rounded-full bg-gradient-to-r ${
-                            catIndex === 0
-                              ? 'from-[#2563eb] to-[#3b82f6]'
-                              : catIndex === 1
+                          className={`h-full rounded-full bg-gradient-to-r ${catIndex === 0
+                            ? 'from-[#2563eb] to-[#3b82f6]'
+                            : catIndex === 1
                               ? 'from-amber-500 to-amber-400'
                               : 'from-[#7c3aed] to-fuchsia-500'
-                          }`}
+                            }`}
                         />
                       </div>
                     </div>

@@ -1,14 +1,14 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const { 
-	title = "Raditya Abib | Designer, Developer & Video Editor", 
-	description = "Personal portfolio of Raditya Abib, a multidisciplinary creative professional combining design, code, and motion to craft premium digital experiences." 
+const {
+	title = "Raditya Abib | Designer, Developer & Video Editor",
+	description = "Personal portfolio of Raditya Abib, a multidisciplinary creative professional combining design, code, and motion to craft premium digital experiences.",
 } = Astro.props;
 ---
 
@@ -20,7 +20,7 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -29,17 +29,20 @@ const {
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta name="twitter:card" content="summary_large_image" />
-		
+
 		<!-- Premium Typography Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<!-- Custom Interactive Cursor elements (Desktop Only) -->
 		<div class="custom-cursor-dot hidden md:block" id="cursor-dot"></div>
 		<div class="custom-cursor-ring hidden md:block" id="cursor-ring"></div>
-		
+
 		<!-- Premium Noise Overlay for paper texture -->
 		<div class="noise-overlay"></div>
 
@@ -48,58 +51,55 @@ const {
 
 		<!-- Custom Interactive Cursor JavaScript -->
 		<script>
-			const dot = document.getElementById('cursor-dot');
-			const ring = document.getElementById('cursor-ring');
-			
+			const dot = document.getElementById("cursor-dot");
+			const ring = document.getElementById("cursor-ring");
+
 			if (dot && ring) {
 				let mouseX = 0;
 				let mouseY = 0;
 				let ringX = 0;
 				let ringY = 0;
-				
-				window.addEventListener('mousemove', (e) => {
+
+				window.addEventListener("mousemove", (e) => {
 					mouseX = e.clientX;
 					mouseY = e.clientY;
-					
+
 					// Move the center dot instantly
 					dot.style.left = `${mouseX}px`;
 					dot.style.top = `${mouseY}px`;
 				});
-				
+
 				// Smooth ring lag effect
 				const animateRing = () => {
 					const delay = 8; // delay divisor for smoothing
 					ringX += (mouseX - ringX) / delay;
 					ringY += (mouseY - ringY) / delay;
-					
+
 					ring.style.left = `${ringX}px`;
 					ring.style.top = `${ringY}px`;
-					
+
 					requestAnimationFrame(animateRing);
 				};
 				animateRing();
 
-				// Add interactive hover effects
-				const hoverElements = document.querySelectorAll('a, button, [role="button"], input, textarea, select');
-				hoverElements.forEach(el => {
-					el.addEventListener('mouseenter', () => {
-						dot.style.width = '12px';
-						dot.style.height = '12px';
-						dot.style.backgroundColor = '#3b82f6';
-						ring.style.width = '50px';
-						ring.style.height = '50px';
-						ring.style.borderColor = 'rgba(59, 130, 246, 0.6)';
-					});
-					el.addEventListener('mouseleave', () => {
-						dot.style.width = '6px';
-						dot.style.height = '6px';
-						dot.style.backgroundColor = '#ffffff';
-						ring.style.width = '34px';
-						ring.style.height = '34px';
-						ring.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-					});
+				// Add interactive hover effects via event delegation
+				document.addEventListener("mouseover", (e) => {
+					const target = e.target;
+					if (target instanceof Element && target.closest('a, button, [role="button"], input, textarea, select')) {
+						dot.classList.add("hovering");
+						ring.classList.add("hovering");
+					}
+				});
+
+				document.addEventListener("mouseout", (e) => {
+					const target = e.target;
+					if (target instanceof Element && target.closest('a, button, [role="button"], input, textarea, select')) {
+						dot.classList.remove("hovering");
+						ring.classList.remove("hovering");
+					}
 				});
 			}
 		</script>
+
 	</body>
 </html>

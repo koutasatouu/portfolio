@@ -37,12 +37,12 @@ const CardNav = ({
 
         contentEl.style.visibility = 'visible';
         contentEl.style.pointerEvents = 'auto';
-        contentEl.style.position = 'static';
-        contentEl.style.height = 'auto';
+        contentEl.style.position = wasPosition;
+        contentEl.style.height = wasHeight;
 
         contentEl.offsetHeight;
 
-        const topBar = 60;
+        const topBar = 50;
         const padding = 16;
         const contentHeight = contentEl.scrollHeight;
 
@@ -51,17 +51,17 @@ const CardNav = ({
         contentEl.style.position = wasPosition;
         contentEl.style.height = wasHeight;
 
-        return topBar + contentHeight + padding;
+        return 50 + contentHeight + padding;
       }
     }
-    return 260;
+    return 250;
   };
 
   const createTimeline = () => {
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 60, overflow: 'hidden' });
+    gsap.set(navEl, { height: 50, overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
@@ -162,10 +162,6 @@ const CardNav = ({
           >
             <div className="hamburger-line" />
             <div className="hamburger-line" />
-          </div>
-
-          <div className="logo-container">
-            <img src={logo} alt={logoAlt} className="logo" />
           </div>
 
           <button

@@ -1,7 +1,7 @@
 .animated-gradient-text {
   position: relative;
   display: inline-flex;
-  vertical-align: middle;
+  vertical-align: baseline;
   align-items: center;
   justify-content: center;
   font-weight: inherit;
@@ -48,4 +48,5 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  vertical-align: baseline;
 }

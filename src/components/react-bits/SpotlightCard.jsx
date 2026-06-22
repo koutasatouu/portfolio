@@ -35,11 +35,11 @@ export default function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-2xl border border-white/5 bg-slate-950/40 ${className}`}
+      className={`relative overflow-hidden squircle-md border border-white/5 bg-slate-950/40 ${className}`}
       {...props}
     >
       <div
-        className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px squircle-md transition-opacity duration-300"
         style={{
           opacity,
           background: `radial-gradient(${spotlightSize} circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,

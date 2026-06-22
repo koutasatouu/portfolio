@@ -1,5 +1,6 @@
 import React from 'react';
 import InfiniteMarquee from './react-bits/InfiniteMarquee';
+import { useApp } from '../context/AppContext';
 
 const technologies = [
   { name: 'React.js', color: 'border-cyan-500/20 text-cyan-400 bg-cyan-950/10', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
@@ -15,13 +16,19 @@ const technologies = [
 ];
 
 export default function TrustBar() {
+  const { lang } = useApp();
+
   return (
     <section className="w-full py-12 border-y border-white/5 bg-[#0a0a0e] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-6 md:gap-12">
         {/* Title */}
         <div className="shrink-0 text-center md:text-left">
-          <span className="text-xs font-bold tracking-widest text-[#64748b] uppercase block">CORE TECH</span>
-          <span className="text-sm font-semibold text-[#f8fafc]">STACK & TOOLS</span>
+          <span className="text-xs font-bold tracking-widest text-[#64748b] uppercase block">
+            {lang === 'en' ? "CORE TECH" : "TEKNOLOGI UTAMA"}
+          </span>
+          <span className="text-sm font-semibold text-[#f8fafc]">
+            {lang === 'en' ? "STACK & TOOLS" : "STACK & PIRANTI"}
+          </span>
         </div>
 
         {/* Marquee Container */}
@@ -48,3 +55,4 @@ export default function TrustBar() {
     </section>
   );
 }
+
