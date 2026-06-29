@@ -6,6 +6,34 @@ import { useApp } from '../context/AppContext';
 import GradientText from './react-bits/GradientText';
 import Magnetic from './react-bits/Magnetic';
 
+const GithubIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const TwitterIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+  </svg>
+);
+
+const InstagramIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const UserIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="1em" height="1em" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
 const testimonialsList = [
   {
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
@@ -43,6 +71,13 @@ export default function Testimonials() {
   });
 
   const isId = lang === 'id';
+
+  const platforms = [
+    { id: 'none', label: isId ? 'Inisial' : 'Initials', icon: UserIcon },
+    { id: 'github', label: 'GitHub', icon: GithubIcon },
+    { id: 'twitter', label: 'Twitter/X', icon: TwitterIcon },
+    { id: 'instagram', label: 'Instagram', icon: InstagramIcon },
+  ];
 
   // Translate fallback items
   const fallbackItems = testimonialsList.map((item, idx) => {
@@ -395,8 +430,9 @@ export default function Testimonials() {
 
                   {/* Name field */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="form-name" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                      {isId ? "Nama Anda" : "Your Name"} *
+                    <label htmlFor="form-name" className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
+                      <span>{isId ? "Nama Anda" : "Your Name"}</span>
+                      <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
                     </label>
                     <input
                       type="text"
@@ -442,48 +478,74 @@ export default function Testimonials() {
                     </div>
                   </div>
 
-                  {/* Social Platform & Handle Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="form-platform" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                        {isId ? "Media Sosial Avatar" : "Social Media Avatar"}
-                      </label>
-                      <select
-                        id="form-platform"
-                        name="platform"
-                        value={form.platform}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary font-sans text-sm outline-none transition-all appearance-none cursor-pointer"
-                      >
-                        <option value="none">{isId ? "Tanpa Sosmed (Gunakan Inisial)" : "None (Use Initials)"}</option>
-                        <option value="github">GitHub</option>
-                        <option value="twitter">Twitter/X</option>
-                        <option value="instagram">Instagram</option>
-                      </select>
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="form-handle" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                        {isId ? "Username Sosmed" : "Social Username"}
-                      </label>
-                      <input
-                        type="text"
-                        id="form-handle"
-                        name="handle"
-                        disabled={form.platform === 'none'}
-                        value={form.handle}
-                        onChange={handleInputChange}
-                        placeholder={form.platform === 'none' ? "—" : "@username"}
-                        className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all disabled:opacity-40"
-                      />
+                  {/* Social Platform Grid Selection */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
+                      {isId ? "Platform Media Sosial" : "Social Media Platform"}
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {platforms.map((p) => {
+                        const Icon = p.icon;
+                        const isSelected = form.platform === p.id;
+                        return (
+                          <button
+                            key={p.id}
+                            type="button"
+                            onClick={() => {
+                              setForm(prev => ({
+                                ...prev,
+                                platform: p.id,
+                                handle: p.id === 'none' ? '' : prev.handle
+                              }));
+                            }}
+                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-[11px] font-semibold tracking-wide transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-accent-blue/15 border-accent-blue text-accent-blue shadow-lg shadow-accent-blue/5'
+                                : 'bg-dark-card/20 border-border-subtle text-text-muted hover:text-text-primary hover:border-border-subtle/80'
+                            }`}
+                          >
+                            <Icon size={14} />
+                            <span>{p.label}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
+                  {/* Social Username (Only shows when a platform is active) */}
+                  <AnimatePresence>
+                    {form.platform !== 'none' && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0, y: -10 }}
+                        animate={{ opacity: 1, height: 'auto', y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -10 }}
+                        className="flex flex-col gap-1.5 overflow-hidden"
+                      >
+                        <label htmlFor="form-handle" className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
+                          <span>{isId ? "Username Sosmed" : "Social Username"}</span>
+                          <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="form-handle"
+                          name="handle"
+                          required
+                          value={form.handle}
+                          onChange={handleInputChange}
+                          placeholder="@username"
+                          className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   {/* Star Rating Select */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                      {isId ? "Rating Anda" : "Your Rating"} *
+                  <div className="flex flex-col gap-1.5 items-center my-1">
+                    <label className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
+                      <span>{isId ? "Rating Anda" : "Your Rating"}</span>
+                      <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
                     </label>
-                    <div className="flex gap-2 py-1">
+                    <div className="flex justify-center gap-3 py-1.5 w-full">
                       {[1, 2, 3, 4, 5].map((starValue) => (
                         <button
                           key={starValue}
@@ -492,7 +554,7 @@ export default function Testimonials() {
                           className="text-amber-400 hover:scale-110 transition-transform cursor-pointer"
                         >
                           <Star
-                            size={22}
+                            size={28}
                             fill={starValue <= form.rating ? "currentColor" : "none"}
                             stroke="currentColor"
                           />
@@ -503,8 +565,9 @@ export default function Testimonials() {
 
                   {/* Quote Review TextArea */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="form-quote" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                      {isId ? "Ulasan / Umpan Balik" : "Review Quote"} *
+                    <label htmlFor="form-quote" className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
+                      <span>{isId ? "Ulasan / Umpan Balik" : "Review Quote"}</span>
+                      <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
                     </label>
                     <textarea
                       id="form-quote"
