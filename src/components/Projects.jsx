@@ -131,11 +131,12 @@ export default function Projects() {
                         ))}
                       </div>
 
-                      {/* KPI Result block */}
+                      {/* KPI Result block (Hidden for prototype projects)
                       <div className="flex justify-between items-center bg-dark-card/50 p-3 squircle-sm border border-border-subtle">
                         <span className="text-[9px] font-bold tracking-widest text-text-muted uppercase">{t.projects.kpiLabel}</span>
                         <span className="text-[11px] font-bold text-accent-blue font-display uppercase tracking-wider">{project.result}</span>
                       </div>
+                      */}
                     </div>
 
                   </div>
