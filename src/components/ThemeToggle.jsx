@@ -7,7 +7,7 @@ export default function ThemeToggle() {
   const { theme, lang, toggleTheme, toggleLang } = useApp();
 
   return (
-    <div className="fixed bottom-6 left-6 z-[700] flex items-center gap-3 px-4 py-2.5 rounded-full glass-panel border border-white/10 shadow-2xl transition-all duration-300 bg-slate-950/80 backdrop-blur-md">
+    <div className="fixed bottom-6 left-6 z-[700] flex items-center gap-3 px-4 py-2.5 rounded-full border border-white/10 shadow-2xl transition-all duration-300 bg-slate-950/85 backdrop-blur-md">
       
       {/* Language Switch */}
       <div className="flex items-center gap-1 bg-black/30 p-0.5 rounded-full border border-white/5">

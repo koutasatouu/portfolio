@@ -13,7 +13,6 @@ import Gallery from './Gallery';
 import Contact from './Contact';
 import Footer from './Footer';
 import ThemeToggle from './ThemeToggle';
-import GradualBlur from './react-bits/GradualBlur';
 
 export default function PortfolioApp() {
   return (
@@ -23,10 +22,6 @@ export default function PortfolioApp() {
 
       {/* Navigation Bar */}
       <Navbar />
-
-      {/* Top and Bottom Gradual Blur overlays */}
-      <GradualBlur target="page" position="top" height="120px" strength={4} zIndex={500} />
-      <GradualBlur target="page" position="bottom" height="120px" strength={4} zIndex={500} />
 
       {/* Main Page Layout Sections */}
       <main>
