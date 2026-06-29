@@ -73,7 +73,6 @@ export default function Testimonials() {
   const isId = lang === 'id';
 
   const platforms = [
-    { id: 'none', label: isId ? 'Inisial' : 'Initials', icon: UserIcon },
     { id: 'github', label: 'GitHub', icon: GithubIcon },
     { id: 'twitter', label: 'Twitter/X', icon: TwitterIcon },
     { id: 'instagram', label: 'Instagram', icon: InstagramIcon },
@@ -140,7 +139,13 @@ export default function Testimonials() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm((prev) => {
+      const nextState = { ...prev, [name]: value };
+      if (name === 'company' && value.trim() === '') {
+        nextState.role = '';
+      }
+      return nextState;
+    });
   };
 
   const handleRatingChange = (newRating) => {
@@ -378,10 +383,15 @@ export default function Testimonials() {
 
             {/* Modal Body */}
             <motion.div
+              layout
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ type: 'spring', duration: 0.5 }}
+              transition={{
+                type: 'spring',
+                duration: 0.5,
+                layout: { type: 'spring', stiffness: 350, damping: 32 }
+              }}
               className="relative w-full max-w-lg bg-dark-card border border-border-subtle squircle-lg shadow-2xl p-6 md:p-8 z-10 max-h-[90vh] overflow-y-auto"
             >
               {/* Close button */}
@@ -397,8 +407,8 @@ export default function Testimonials() {
               </h3>
               <p className="text-xs text-text-muted mb-6 leading-relaxed">
                 {isId
-                  ? "Ulasan Anda akan dikirim ke Google Sheet dan akan tampil setelah disetujui."
-                  : "Your review will be sent to Google Sheets and will display once approved."}
+                  ? "Ulasan Anda akan dikirim dan akan tampil setelah disetujui."
+                  : "Your review will be sent and will display once approved."}
               </p>
 
               {submitStatus === 'success' ? (
@@ -446,22 +456,9 @@ export default function Testimonials() {
                     />
                   </div>
 
-                  {/* Role & Company Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="form-role" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                        {isId ? "Jabatan / Peran" : "Role / Title"}
-                      </label>
-                      <input
-                        type="text"
-                        id="form-role"
-                        name="role"
-                        value={form.role}
-                        onChange={handleInputChange}
-                        placeholder={isId ? "Contoh: CEO, Developer" : "e.g., CEO, Developer"}
-                        className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
-                      />
-                    </div>
+                  {/* Company & Role Group */}
+                  <div className="flex flex-col">
+                    {/* Company Input */}
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="form-company" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
                         {isId ? "Nama Perusahaan" : "Company"}
@@ -476,74 +473,105 @@ export default function Testimonials() {
                         className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
                       />
                     </div>
+
+                    {/* Role Input (Only shows when Company is filled) */}
+                    <AnimatePresence>
+                      {form.company.trim() !== '' && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, marginTop: 0, y: -10 }}
+                          animate={{ opacity: 1, height: 'auto', marginTop: 16, y: 0 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0, y: -10 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="flex flex-col gap-1.5 overflow-hidden"
+                        >
+                          <label htmlFor="form-role" className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
+                            {isId ? "Jabatan / Peran di Perusahaan" : "Role / Title at Company"}
+                          </label>
+                          <input
+                            type="text"
+                            id="form-role"
+                            name="role"
+                            value={form.role}
+                            onChange={handleInputChange}
+                            placeholder={isId ? "Contoh: CEO, Developer" : "e.g., CEO, Developer"}
+                            className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
-                  {/* Social Platform Grid Selection */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
-                      {isId ? "Platform Media Sosial" : "Social Media Platform"}
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {platforms.map((p) => {
-                        const Icon = p.icon;
-                        const isSelected = form.platform === p.id;
-                        return (
-                          <button
-                            key={p.id}
-                            type="button"
-                            onClick={() => {
-                              setForm(prev => ({
-                                ...prev,
-                                platform: p.id,
-                                handle: p.id === 'none' ? '' : prev.handle
-                              }));
-                            }}
-                            className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-[11px] font-semibold tracking-wide transition-all cursor-pointer ${
-                              isSelected
+                  {/* Social Platform & Username Group */}
+                  <div className="flex flex-col">
+                    {/* Social Platform Grid Selection */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] font-bold tracking-widest text-text-muted uppercase">
+                        {isId ? "Platform Media Sosial-mu" : "Your Social Media Platform"}
+                      </label>
+                      <div className="grid grid-cols-3 gap-2">
+                        {platforms.map((p) => {
+                          const Icon = p.icon;
+                          const isSelected = form.platform === p.id;
+                          return (
+                            <button
+                              key={p.id}
+                              type="button"
+                              onClick={() => {
+                                setForm(prev => {
+                                  const newPlatform = prev.platform === p.id ? 'none' : p.id;
+                                  return {
+                                    ...prev,
+                                    platform: newPlatform,
+                                    handle: newPlatform === 'none' ? '' : prev.handle
+                                  };
+                                });
+                              }}
+                              className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-[11px] font-semibold tracking-wide transition-all cursor-pointer ${isSelected
                                 ? 'bg-accent-blue/15 border-accent-blue text-accent-blue shadow-lg shadow-accent-blue/5'
                                 : 'bg-dark-card/20 border-border-subtle text-text-muted hover:text-text-primary hover:border-border-subtle/80'
-                            }`}
-                          >
-                            <Icon size={14} />
-                            <span>{p.label}</span>
-                          </button>
-                        );
-                      })}
+                                }`}
+                            >
+                              <Icon size={14} />
+                              <span>{p.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Social Username (Only shows when a platform is active) */}
-                  <AnimatePresence>
-                    {form.platform !== 'none' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0, y: -10 }}
-                        animate={{ opacity: 1, height: 'auto', y: 0 }}
-                        exit={{ opacity: 0, height: 0, y: -10 }}
-                        className="flex flex-col gap-1.5 overflow-hidden"
-                      >
-                        <label htmlFor="form-handle" className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
-                          <span>{isId ? "Username Sosmed" : "Social Username"}</span>
-                          <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="form-handle"
-                          name="handle"
-                          required
-                          value={form.handle}
-                          onChange={handleInputChange}
-                          placeholder="@username"
-                          className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    {/* Social Username (Only shows when a platform is active) */}
+                    <AnimatePresence>
+                      {form.platform !== 'none' && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, marginTop: 0, y: -10 }}
+                          animate={{ opacity: 1, height: 'auto', marginTop: 16, y: 0 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0, y: -10 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="flex flex-col gap-1.5 overflow-hidden"
+                        >
+                          <label htmlFor="form-handle" className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
+                            <span>{isId ? "Username Sosmed" : "Social Username"}</span>
+                            <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="form-handle"
+                            name="handle"
+                            required
+                            value={form.handle}
+                            onChange={handleInputChange}
+                            placeholder="@username"
+                            className="w-full px-4 py-3 squircle-sm border border-border-subtle bg-dark-card/20 focus:bg-dark-card/40 focus:border-accent-blue/50 text-text-primary placeholder-text-muted/50 font-sans text-sm outline-none transition-all"
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
 
                   {/* Star Rating Select */}
                   <div className="flex flex-col gap-1.5 items-center my-1">
                     <label className="text-[10px] font-bold tracking-widest text-text-muted uppercase flex items-center">
                       <span>{isId ? "Rating Anda" : "Your Rating"}</span>
-                      <span className="text-red-500 font-extrabold text-sm ml-1">*</span>
                     </label>
                     <div className="flex justify-center gap-3 py-1.5 w-full">
                       {[1, 2, 3, 4, 5].map((starValue) => (
