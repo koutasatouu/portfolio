@@ -35,7 +35,7 @@ export default function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden squircle-md border border-white/5 bg-slate-950/40 ${className}`}
+      className={`relative overflow-hidden squircle-md border border-border-subtle bg-dark-card/40 ${className}`}
       {...props}
     >
       <div

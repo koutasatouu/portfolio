@@ -54,7 +54,12 @@
   textarea,
   button,
   span,
-  h1, h2, h3, h4, h5, h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
   p,
   a {
     transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -239,6 +244,6 @@
 
   .grid-overlay {
     background-image: linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
-                      linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
+      linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
     background-size: 4rem 4rem;
   }

@@ -83,7 +83,7 @@ export default function Projects() {
                 rel={project.link !== '#' ? "noopener noreferrer" : undefined}
                 className="block h-full cursor-pointer"
               >
-                <SpotlightCard className="h-full flex flex-col justify-between group border border-border-subtle bg-dark-card/60 hover:bg-dark-card-hover/60 transition-colors duration-500">
+                <SpotlightCard className="h-full flex flex-col justify-between group hover:bg-dark-card-hover/60 transition-colors duration-500">
 
                   {/* Upper Half: Image & Tag */}
                   <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-[19px]">

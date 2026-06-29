@@ -59,15 +59,15 @@ export default function About() {
 
             {/* Quick stats grid */}
             <div className="grid grid-cols-3 gap-6 mb-10">
-              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center bg-dark-card border border-border-subtle">
+              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center">
                 <span className="font-display font-black text-2xl md:text-4xl text-text-primary block">4+</span>
                 <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-muted uppercase mt-2">{t.about.stat1}</span>
               </SpotlightCard>
-              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center bg-dark-card border border-border-subtle">
+              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center">
                 <span className="font-display font-black text-2xl md:text-4xl text-accent-blue block">25+</span>
                 <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-muted uppercase mt-2">{t.about.stat2}</span>
               </SpotlightCard>
-              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center bg-dark-card border border-border-subtle">
+              <SpotlightCard className="p-4 md:p-5 flex flex-col justify-center text-center">
                 <span className="font-display font-black text-2xl md:text-4xl text-text-primary block">15+</span>
                 <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-muted uppercase mt-2">{t.about.stat3}</span>
               </SpotlightCard>

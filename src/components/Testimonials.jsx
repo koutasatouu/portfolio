@@ -38,7 +38,7 @@ export default function Testimonials() {
       <div className="absolute top-[30%] right-[10%] w-[25vw] h-[25vw] bg-accent-purple/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Section Title */}
         <div className="text-center mb-20">
           <span className="text-xs font-bold tracking-widest text-accent-blue uppercase mb-4 block">{t.testimonials.tag}</span>
@@ -52,7 +52,7 @@ export default function Testimonials() {
           {items.map((item, idx) => (
             <SpotlightCard
               key={idx}
-              className="p-8 md:p-10 border border-border-subtle bg-dark-card/60 squircle-lg relative overflow-hidden flex flex-col justify-between shadow-2xl h-full"
+              className="p-8 md:p-10 squircle-lg relative overflow-hidden flex flex-col justify-between shadow-2xl h-full"
             >
               {/* Quote Icon Background */}
               <Quote size={120} className="absolute -top-4 -right-4 text-text-primary/5 pointer-events-none" />

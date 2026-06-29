@@ -181,7 +181,7 @@ export default function Hero() {
               <a
                 href="#projects"
                 onClick={(e) => handleScrollTo(e, '#projects')}
-                className="group px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide bg-text-primary text-dark-bg hover:bg-accent-blue hover:text-text-primary transition-all duration-300 flex items-center gap-2 shadow-lg shadow-text-primary/5 hover:shadow-accent-blue/20"
+                className="group px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wide bg-text-primary text-dark-bg hover:bg-accent-blue hover:text-white transition-all duration-300 flex items-center gap-2 shadow-lg shadow-text-primary/5 hover:shadow-accent-blue/20"
               >
                 {t.hero.ctaWork}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -183,7 +183,7 @@ export default function Contact() {
 
           {/* Right Column: Interactive Form */}
           <div className="lg:col-span-7">
-            <SpotlightCard className="p-8 md:p-10 border border-border-subtle bg-dark-card/60 squircle-lg shadow-2xl relative">
+            <SpotlightCard className="p-8 md:p-10 squircle-lg shadow-2xl relative">
 
               <AnimatePresence mode="wait">
 
@@ -299,7 +299,7 @@ export default function Contact() {
                         <button
                           type="submit"
                           disabled={status === 'sending'}
-                          className="px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wider uppercase bg-text-primary text-dark-bg hover:bg-accent-blue hover:text-text-primary transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto shadow-md shadow-text-primary/5 cursor-pointer disabled:opacity-50"
+                          className="px-8 py-4 rounded-full font-sans font-bold text-sm tracking-wider uppercase bg-text-primary text-dark-bg hover:bg-accent-blue hover:text-white transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto shadow-md shadow-text-primary/5 cursor-pointer disabled:opacity-50"
                         >
                           {status === 'sending' ? (
                             <>

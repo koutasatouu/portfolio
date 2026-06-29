@@ -91,7 +91,7 @@ export default function Footer() {
             onClick={handleScrollToTop}
             className="font-display font-black text-lg tracking-wider text-text-primary"
           >
-            RADITYA<span className="text-accent-blue">.DEV</span>
+            <img src="/logo-transparent-blue.png" alt="Raditya.Dev Logo" className="h-8 w-auto object-contain" />
           </a>
           <span className="text-xs font-sans text-text-muted tracking-wide">
             © {new Date().getFullYear()} Raditya Abib. {t.footer.copyright}
