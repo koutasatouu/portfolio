@@ -3,13 +3,15 @@ import CardNav from './react-bits/CardNav';
 import { useApp } from '../context/AppContext';
 
 export default function Navbar() {
-  const { t } = useApp();
+  const { t, theme } = useApp();
+
+  const isLight = theme === 'light';
 
   const navItems = [
     {
       label: t.navbar.profile,
-      bgColor: "#13131c",
-      textColor: "#fff",
+      bgColor: isLight ? '#e0f2fe' : '#13131c',
+      textColor: isLight ? '#0369a1' : '#fff',
       links: [
         { label: t.navbar.home, href: "#home", ariaLabel: "Home Section" },
         { label: t.navbar.about, href: "#about", ariaLabel: "About Me Section" }
@@ -17,18 +19,17 @@ export default function Navbar() {
     },
     {
       label: t.navbar.portfolio,
-      bgColor: "#0d131f",
-      textColor: "#fff",
+      bgColor: isLight ? '#f3e8ff' : '#0d131f',
+      textColor: isLight ? '#6b21a8' : '#fff',
       links: [
         { label: t.navbar.projects, href: "#projects", ariaLabel: "Projects Section" },
-        { label: t.navbar.experience, href: "#experience", ariaLabel: "Experience Section" },
-        // { label: t.navbar.gallery, href: "#gallery", ariaLabel: "Gallery Section" }
+        { label: t.navbar.experience, href: "#experience", ariaLabel: "Experience Section" }
       ]
     },
     {
       label: t.navbar.connect,
-      bgColor: "#0a1916",
-      textColor: "#fff",
+      bgColor: isLight ? '#dcfce7' : '#0a1916',
+      textColor: isLight ? '#15803d' : '#fff',
       links: [
         { label: t.navbar.services, href: "#services", ariaLabel: "Services Section" },
         { label: t.navbar.contact, href: "#contact", ariaLabel: "Contact Section" },
@@ -46,11 +47,9 @@ export default function Navbar() {
 
   return (
     <CardNav
-      logo="/logo-char-blue.png"
-      logoAlt="Raditya.Dev Logo"
       items={navItems}
-      baseColor="rgba(7, 7, 9, 0.7)"
-      menuColor="#ffffff"
+      baseColor={isLight ? 'rgba(255, 255, 255, 0.75)' : 'rgba(7, 7, 9, 0.7)'}
+      menuColor={isLight ? '#0f172a' : '#ffffff'}
       buttonBgColor="#2563eb"
       buttonTextColor="#ffffff"
       ctaText={t.navbar.cta}

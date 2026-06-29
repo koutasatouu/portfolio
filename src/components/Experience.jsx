@@ -133,7 +133,7 @@ export default function Experience() {
                     className="w-full h-full object-cover group-hover/banner:scale-105 transition-transform duration-500 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover/banner:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-slate-950/45 opacity-0 group-hover/banner:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                     <div className="px-4 py-2 bg-accent-blue text-white text-xs font-semibold rounded-full flex items-center gap-1.5 shadow-lg transform translate-y-2 group-hover/banner:translate-y-0 transition-transform duration-300">
                       <span>Visit Site</span>
                       <ArrowUpRight size={14} />

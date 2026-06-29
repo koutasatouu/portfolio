@@ -1,17 +1,27 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, useTransform } from 'framer-motion';
 import './GradientText.css';
+import { useApp } from '../../context/AppContext';
 
 export default function GradientText({
   children,
   className = '',
-  colors = ['#3b82f6', '#4647AE', '#112E81'],
+  colors,
   animationSpeed = 8,
   showBorder = false,
   direction = 'horizontal',
   pauseOnHover = false,
   yoyo = true
 }) {
+  const { theme } = useApp();
+  const isLight = theme === 'light';
+
+  const defaultColors = isLight
+    ? ['#2563eb', '#7c3aed', '#1d4ed8'] // Light Mode colors (crisp and high contrast)
+    : ['#60a5fa', '#c084fc', '#6366f1']; // Dark Mode colors (vibrant and glowing)
+
+  const activeColors = colors || defaultColors;
+
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
   const elapsedRef = useRef(0);
@@ -73,7 +83,7 @@ export default function GradientText({
 
   const gradientAngle =
     direction === 'horizontal' ? 'to right' : direction === 'vertical' ? 'to bottom' : 'to bottom right';
-  const gradientColors = [...colors, colors[0]].join(', ');
+  const gradientColors = [...activeColors, activeColors[0]].join(', ');
 
   const gradientStyle = {
     backgroundImage: `linear-gradient(${gradientAngle}, ${gradientColors})`,
