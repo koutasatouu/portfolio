@@ -197,7 +197,10 @@
   }
 
   .card-nav-cta-button {
-    display: none;
+    display: block;
+    height: 34px;
+    padding: 0 1rem;
+    font-size: 11px;
   }
 
   .card-nav-content {

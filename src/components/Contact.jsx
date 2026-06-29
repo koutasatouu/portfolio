@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle } from 'lucide-react';
+import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '../context/AppContext';
 import GradientText from './react-bits/GradientText';
@@ -69,17 +69,41 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setStatus('sending');
 
-    // Simulate API request delay
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    }, 1800);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Message from ${formData.name} via Portfolio`,
+          from_name: "Portfolio Contact Form"
+        })
+      });
+
+      const result = await response.json();
+      if (response.status === 200 || result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        console.error("Web3Forms submission failed:", result);
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -89,9 +113,9 @@ export default function Contact() {
       <div className="absolute bottom-[10%] right-[10%] w-[30vw] h-[30vw] bg-accent-purple/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left Column: CTA Info */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <span className="text-xs font-bold tracking-widest text-accent-blue uppercase mb-4 block">{t.contact.tag}</span>
@@ -104,7 +128,7 @@ export default function Contact() {
 
             {/* Quick Contact links */}
             <div className="flex flex-col gap-6">
-              
+
               {/* Mail */}
               <div className="flex items-center gap-4 group">
                 <div className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-accent-blue/20 text-text-secondary group-hover:text-text-primary group-hover:border-accent-blue/20 flex items-center justify-center transition-all duration-300">
@@ -121,7 +145,7 @@ export default function Contact() {
               <div className="flex gap-4 mt-4">
                 <Magnetic range={25} strength={0.3}>
                   <a
-                    href="https://github.com/radityaabib"
+                    href="https://github.com/koutasatouu"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-dark-card hover:border-border-subtle/50 text-text-secondary hover:text-text-primary flex items-center justify-center transition-all duration-300"
@@ -132,7 +156,7 @@ export default function Contact() {
                 </Magnetic>
                 <Magnetic range={25} strength={0.3}>
                   <a
-                    href="https://linkedin.com/in/radityaabib"
+                    href="https://www.linkedin.com/in/radityaabib/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-accent-blue/20 hover:border-accent-blue/30 text-text-secondary hover:text-text-primary flex items-center justify-center transition-all duration-300"
@@ -143,7 +167,7 @@ export default function Contact() {
                 </Magnetic>
                 <Magnetic range={25} strength={0.3}>
                   <a
-                    href="https://www.instagram.com/radityaabib"
+                    href="https://www.instagram.com/radityaabib/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 squircle-sm border border-border-subtle bg-dark-card/60 hover:bg-accent-blue/20 hover:border-accent-blue/30 text-text-secondary hover:text-text-primary flex items-center justify-center transition-all duration-300"
@@ -160,9 +184,9 @@ export default function Contact() {
           {/* Right Column: Interactive Form */}
           <div className="lg:col-span-7">
             <SpotlightCard className="p-8 md:p-10 border border-border-subtle bg-dark-card/60 squircle-lg shadow-2xl relative">
-              
+
               <AnimatePresence mode="wait">
-                
+
                 {status === 'success' ? (
                   <motion.div
                     key="success"
@@ -177,6 +201,28 @@ export default function Contact() {
                     <h3 className="font-display font-bold text-2xl text-text-primary mb-2">{t.contact.successHeadline}</h3>
                     <p className="font-sans text-sm text-text-secondary max-w-sm">
                       {t.contact.successDesc}
+                    </p>
+                    <button
+                      onClick={() => setStatus('idle')}
+                      className="mt-8 px-6 py-2.5 rounded-full border border-border-subtle text-xs font-semibold text-text-secondary hover:text-text-primary hover:border-border-subtle/30 transition-all cursor-pointer bg-dark-card"
+                    >
+                      {t.contact.btnReset}
+                    </button>
+                  </motion.div>
+                ) : status === 'error' ? (
+                  <motion.div
+                    key="error"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="flex flex-col items-center justify-center py-16 text-center"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 flex items-center justify-center mb-6">
+                      <AlertCircle size={32} />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl text-text-primary mb-2">{t.contact.errorHeadline}</h3>
+                    <p className="font-sans text-sm text-text-secondary max-w-sm">
+                      {t.contact.errorDesc}
                     </p>
                     <button
                       onClick={() => setStatus('idle')}

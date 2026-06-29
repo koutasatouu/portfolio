@@ -22,7 +22,7 @@ export default function Navbar() {
       links: [
         { label: t.navbar.projects, href: "#projects", ariaLabel: "Projects Section" },
         { label: t.navbar.experience, href: "#experience", ariaLabel: "Experience Section" },
-        { label: t.navbar.gallery, href: "#gallery", ariaLabel: "Gallery Section" }
+        // { label: t.navbar.gallery, href: "#gallery", ariaLabel: "Gallery Section" }
       ]
     },
     {
@@ -32,7 +32,7 @@ export default function Navbar() {
       links: [
         { label: t.navbar.services, href: "#services", ariaLabel: "Services Section" },
         { label: t.navbar.contact, href: "#contact", ariaLabel: "Contact Section" },
-        { label: "Instagram", href: "https://www.instagram.com/radityaabib", ariaLabel: "Instagram Profile" }
+        { label: "Instagram", href: "https://www.instagram.com/radityaabib/", ariaLabel: "Instagram Profile" }
       ]
     }
   ];
@@ -46,7 +46,7 @@ export default function Navbar() {
 
   return (
     <CardNav
-      logo="/favicon.svg"
+      logo="/logo-char-blue.png"
       logoAlt="Raditya.Dev Logo"
       items={navItems}
       baseColor="rgba(7, 7, 9, 0.7)"

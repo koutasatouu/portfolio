@@ -37,7 +37,7 @@ export default function PortfolioApp() {
         <Experience />
         <Services />
         <Testimonials />
-        <Gallery />
+        {/* <Gallery /> */}
         <Contact />
       </main>
 

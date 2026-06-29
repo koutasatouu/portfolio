@@ -17,8 +17,7 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/logo-char.png" />
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- SEO Meta Tags -->
@@ -85,7 +84,12 @@ const {
 				// Add interactive hover effects via event delegation
 				document.addEventListener("mouseover", (e) => {
 					const target = e.target;
-					if (target instanceof Element && target.closest('a, button, [role="button"], input, textarea, select')) {
+					if (
+						target instanceof Element &&
+						target.closest(
+							'a, button, [role="button"], input, textarea, select',
+						)
+					) {
 						dot.classList.add("hovering");
 						ring.classList.add("hovering");
 					}
@@ -93,13 +97,17 @@ const {
 
 				document.addEventListener("mouseout", (e) => {
 					const target = e.target;
-					if (target instanceof Element && target.closest('a, button, [role="button"], input, textarea, select')) {
+					if (
+						target instanceof Element &&
+						target.closest(
+							'a, button, [role="button"], input, textarea, select',
+						)
+					) {
 						dot.classList.remove("hovering");
 						ring.classList.remove("hovering");
 					}
 				});
 			}
 		</script>
-
 	</body>
 </html>

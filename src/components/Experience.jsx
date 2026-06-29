@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
-import { Calendar, Briefcase, ChevronRight } from 'lucide-react';
+import { Calendar, Briefcase, ChevronRight, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
 import GradientText from './react-bits/GradientText';
 
 const experiencesList = [
   {
+    tech: ['React.js', 'Tailwind CSS', 'Astro', 'Vite', 'Frontend Architecture'],
+    link: 'https://www.texere.studio/',
+    image: '/works/texere.png',
+  },
+  {
+    tech: ['Japanese to English', 'Content Localization', 'Translation Scripting', 'Community Collaboration'],
+    link: 'https://mangadex.org/title/99daf7bc-3a3b-4fe8-b10d-951b32bfea64/days-with-my-stepsister',
+    image: '/works/manga.png',
+  },
+  {
     tech: ['PHP', 'Laravel', 'React.js', 'MySQL', 'SQL Server'],
+    link: 'https://technomedic.id/web/',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Ftechnomedic.id%2Fweb%2F&screenshot=true&embed=screenshot.url',
   },
   {
     tech: ['Adobe Photoshop', 'Adobe Illustrator', 'Premiere Pro', 'After Effects', 'React.js'],
+    link: 'https://solobeat.id/',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fsolobeat.id%2F&screenshot=true&embed=screenshot.url',
   },
   {
     tech: ['Art Direction', 'Visual Design', 'Adobe Photoshop', 'Adobe Illustrator'],
-  },
-  {
-    tech: ['PHP', 'CodeIgniter', 'Tailwind CSS', 'MySQL', 'Photoshop', 'Illustrator'],
+    link: 'https://drive.google.com/drive/folders/1mLuyZsmzTOe9_k3-w95otscNwt-KXQYk?usp=drive_link',
+    image: '/works/pyfm.png',
   },
 ];
 
@@ -111,6 +124,32 @@ export default function Experience() {
               transition={{ duration: 0.4, ease: 'easeOut' }}
               className="glass-panel squircle-lg p-8 border border-border-subtle bg-dark-card/55 relative"
             >
+              {/* Timeline Header Thumbnail Banner */}
+              {activeItem.image && (
+                <div className="relative w-full h-40 md:h-52 mb-8 overflow-hidden rounded-xl border border-border-subtle group/banner">
+                  <img
+                    src={activeItem.image}
+                    alt={activeItem.company}
+                    className="w-full h-full object-cover group-hover/banner:scale-105 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-dark-bg/40 opacity-0 group-hover/banner:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                    <div className="px-4 py-2 bg-accent-blue text-white text-xs font-semibold rounded-full flex items-center gap-1.5 shadow-lg transform translate-y-2 group-hover/banner:translate-y-0 transition-transform duration-300">
+                      <span>Visit Site</span>
+                      <ArrowUpRight size={14} />
+                    </div>
+                  </div>
+                  {activeItem.link && (
+                    <a
+                      href={activeItem.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 z-10"
+                    />
+                  )}
+                </div>
+              )}
+
               {/* Period badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-subtle bg-dark-card/30 text-[10px] font-bold tracking-wider text-text-secondary uppercase mb-6">
                 <Calendar size={12} className="text-accent-blue" />

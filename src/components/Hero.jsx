@@ -95,25 +95,25 @@ export default function Hero() {
 
   const roles = lang === 'en'
     ? [
-        'Graphic Designer',
-        'UI/UX Designer',
-        'Web Developer',
-        'Translator',
-        'Videographer',
-        'Photographer',
-        'Video Editor',
-        'Photo Editor'
-      ]
+      'Graphic Designer',
+      'UI/UX Designer',
+      'Web Developer',
+      'Translator',
+      'Videographer',
+      'Photographer',
+      'Video Editor',
+      'Photo Editor'
+    ]
     : [
-        'Desainer Grafis',
-        'Desainer UI/UX',
-        'Developer Web',
-        'Penerjemah',
-        'Videografer',
-        'Fotografer',
-        'Editor Video',
-        'Editor Foto'
-      ];
+      'Desainer Grafis',
+      'Desainer UI/UX',
+      'Developer Web',
+      'Penerjemah',
+      'Videografer',
+      'Fotografer',
+      'Editor Video',
+      'Editor Foto'
+    ];
 
   return (
     <section
@@ -203,7 +203,7 @@ export default function Hero() {
           <motion.div variants={childVariants} className="flex gap-6 items-center">
             <Magnetic range={25} strength={0.3}>
               <a
-                href="https://github.com/radityaabib"
+                href="https://github.com/koutasatouu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-secondary hover:text-text-primary transition-colors"
@@ -214,7 +214,7 @@ export default function Hero() {
             </Magnetic>
             <Magnetic range={25} strength={0.3}>
               <a
-                href="https://linkedin.com/in/radityaabib"
+                href="https://www.linkedin.com/in/radityaabib/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-secondary hover:text-text-primary transition-colors"
@@ -225,7 +225,7 @@ export default function Hero() {
             </Magnetic>
             <Magnetic range={25} strength={0.3}>
               <a
-                href="https://www.instagram.com/radityaabib"
+                href="https://www.instagram.com/radityaabib/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-text-secondary hover:text-text-primary transition-colors"

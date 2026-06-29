@@ -7,34 +7,34 @@ import GradientText from './react-bits/GradientText';
 
 const projectsList = [
   {
-    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Ftetracoffee.vercel.app%2F&screenshot=true&embed=screenshot.url',
     technologies: ['React.js', 'Tailwind CSS', 'Framer Motion'],
-    link: '#',
+    link: 'https://tetracoffee.vercel.app/',
   },
   {
-    image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80',
-    technologies: ['Laravel', 'React.js', 'MySQL'],
-    link: '#',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fkarsacoffee.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    technologies: ['React.js', 'Vite', 'Tailwind CSS'],
+    link: 'https://karsacoffee.vercel.app/',
   },
   {
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
-    technologies: ['CodeIgniter', 'Tailwind', 'ChartJS'],
-    link: '#',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fburaburacoffee.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    technologies: ['React.js', 'Tailwind CSS', 'Framer Motion'],
+    link: 'https://buraburacoffee.vercel.app/',
   },
   {
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    technologies: ['Photoshop', 'Illustrator', 'Branding'],
-    link: '#',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fbentocoffee.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    technologies: ['React.js', 'Vite', 'Tailwind CSS'],
+    link: 'https://bentocoffee.vercel.app/',
   },
   {
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80',
-    technologies: ['Photoshop', 'Lightroom', 'Copywriting'],
-    link: '#',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fzanoid.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    technologies: ['React.js', 'Vite', 'Tailwind CSS'],
+    link: 'https://zanoid.vercel.app/',
   },
   {
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80',
-    technologies: ['Premiere Pro', 'After Effects'],
-    link: '#',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fkopiwetpule.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    technologies: ['React.js', 'Tailwind CSS', 'Framer Motion'],
+    link: 'https://kopiwetpule.vercel.app/',
   },
 ];
 
@@ -59,7 +59,7 @@ export default function Projects() {
       <div className="absolute bottom-[15%] right-[5%] w-[30vw] h-[30vw] bg-accent-purple/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-6">
           <div>
@@ -77,64 +77,71 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((project, index) => (
             <CardTilt key={project.title} className="h-full">
-              <SpotlightCard className="h-full flex flex-col justify-between group cursor-pointer border border-border-subtle bg-dark-card/60 hover:bg-dark-card-hover/60 transition-colors duration-500">
-                
-                {/* Upper Half: Image & Tag */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-[19px]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-bg-alt via-transparent to-transparent opacity-40" />
-                  
-                  {/* Category Tag overlay */}
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-dark-bg/80 backdrop-blur-md text-text-primary border border-border-subtle">
-                    {project.category}
-                  </span>
-                </div>
+              <a
+                href={project.link}
+                target={project.link !== '#' ? "_blank" : undefined}
+                rel={project.link !== '#' ? "noopener noreferrer" : undefined}
+                className="block h-full cursor-pointer"
+              >
+                <SpotlightCard className="h-full flex flex-col justify-between group border border-border-subtle bg-dark-card/60 hover:bg-dark-card-hover/60 transition-colors duration-500">
 
-                {/* Lower Half: Body */}
-                <div className="p-6 flex flex-col justify-between flex-1">
-                  
-                  {/* Title & Description */}
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-display font-bold text-lg md:text-xl text-text-primary group-hover:text-accent-blue transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      <ArrowUpRight size={18} className="text-text-muted group-hover:text-text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                    </div>
-                    <p className="font-sans text-xs md:text-sm text-text-secondary leading-relaxed line-clamp-3">
-                      {project.description}
-                    </p>
+                  {/* Upper Half: Image & Tag */}
+                  <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-[19px]">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-bg-alt via-transparent to-transparent opacity-40" />
+
+                    {/* Category Tag overlay */}
+                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-dark-bg/80 backdrop-blur-md text-text-primary border border-border-subtle">
+                      {project.category}
+                    </span>
                   </div>
 
-                  {/* Technical details & KPIs */}
-                  <div className="mt-auto pt-6 border-t border-border-subtle flex flex-col gap-4">
-                    {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-0.5 rounded text-[10px] font-medium tracking-wide uppercase bg-dark-card text-text-secondary border border-border-subtle"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                  {/* Lower Half: Body */}
+                  <div className="p-6 flex flex-col justify-between flex-1">
+
+                    {/* Title & Description */}
+                    <div className="mb-6">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-display font-bold text-lg md:text-xl text-text-primary group-hover:text-accent-blue transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <ArrowUpRight size={18} className="text-text-muted group-hover:text-text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      </div>
+                      <p className="font-sans text-xs md:text-sm text-text-secondary leading-relaxed line-clamp-3">
+                        {project.description}
+                      </p>
                     </div>
-                    
-                    {/* KPI Result block */}
-                    <div className="flex justify-between items-center bg-dark-card/50 p-3 squircle-sm border border-border-subtle">
-                      <span className="text-[9px] font-bold tracking-widest text-text-muted uppercase">{t.projects.kpiLabel}</span>
-                      <span className="text-[11px] font-bold text-accent-blue font-display uppercase tracking-wider">{project.result}</span>
+
+                    {/* Technical details & KPIs */}
+                    <div className="mt-auto pt-6 border-t border-border-subtle flex flex-col gap-4">
+                      {/* Tech Badges */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2.5 py-0.5 rounded text-[10px] font-medium tracking-wide uppercase bg-dark-card text-text-secondary border border-border-subtle"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* KPI Result block */}
+                      <div className="flex justify-between items-center bg-dark-card/50 p-3 squircle-sm border border-border-subtle">
+                        <span className="text-[9px] font-bold tracking-widest text-text-muted uppercase">{t.projects.kpiLabel}</span>
+                        <span className="text-[11px] font-bold text-accent-blue font-display uppercase tracking-wider">{project.result}</span>
+                      </div>
                     </div>
+
                   </div>
 
-                </div>
-
-              </SpotlightCard>
+                </SpotlightCard>
+              </a>
             </CardTilt>
           ))}
         </div>

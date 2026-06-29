@@ -1,5 +1,5 @@
 import React from 'react';
-import InfiniteMarquee from './react-bits/InfiniteMarquee';
+import LogoLoop from './react-bits/LogoLoop';
 import { useApp } from '../context/AppContext';
 
 const technologies = [
@@ -18,6 +18,22 @@ const technologies = [
 export default function TrustBar() {
   const { lang } = useApp();
 
+  const renderTechItem = (tech) => (
+    <div
+      className={`px-5 py-2.5 rounded-full border text-xs font-semibold tracking-wider font-display uppercase whitespace-nowrap shadow-sm flex items-center gap-2.5 ${tech.color}`}
+    >
+      {tech.icon && (
+        <img
+          src={tech.icon}
+          alt={`${tech.name} logo`}
+          className="object-contain"
+          style={{ width: '18px', height: '18px' }}
+        />
+      )}
+      {tech.name}
+    </div>
+  );
+
   return (
     <section className="w-full py-12 border-y border-white/5 bg-[#0a0a0e] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-6 md:gap-12">
@@ -32,24 +48,20 @@ export default function TrustBar() {
         </div>
 
         {/* Marquee Container */}
-        <div className="flex-1 w-full overflow-hidden">
-          <InfiniteMarquee direction="left" speed={28}>
-            {technologies.map((tech, index) => (
-              <div
-                key={`${tech.name}-${index}`}
-                className={`px-5 py-2.5 rounded-full border text-xs font-semibold tracking-wider font-display uppercase whitespace-nowrap shadow-sm flex items-center gap-2.5 ${tech.color}`}
-              >
-                {tech.icon && (
-                  <img
-                    src={tech.icon}
-                    alt={`${tech.name} logo`}
-                    className="w-4.5 h-4.5 object-contain"
-                  />
-                )}
-                {tech.name}
-              </div>
-            ))}
-          </InfiniteMarquee>
+        <div className="flex-1 w-full overflow-hidden text-text-secondary">
+          <LogoLoop
+            logos={technologies}
+            speed={40}
+            direction="left"
+            logoHeight={38}
+            gap={16}
+            fadeOut
+            fadeOutColor="#0a0a0e"
+            scaleOnHover
+            pauseOnHover={true}
+            renderItem={renderTechItem}
+            ariaLabel="Technology stack and tools"
+          />
         </div>
       </div>
     </section>

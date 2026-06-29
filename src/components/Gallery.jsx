@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import Magnetic from './react-bits/Magnetic';
 import { useApp } from '../context/AppContext';
 import GradientText from './react-bits/GradientText';
@@ -73,7 +74,7 @@ export default function Gallery() {
       <div className="absolute top-[20%] left-[5%] w-[25vw] h-[25vw] bg-accent-blue/5 rounded-full glow-blur pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
@@ -82,7 +83,7 @@ export default function Gallery() {
               {t.gallery.headline} <GradientText>{t.gallery.headlineAccent}</GradientText>
             </h2>
           </div>
-          
+
           {/* Category Filter buttons */}
           <div className="flex flex-wrap gap-3">
             {staticCategories.map((cat, idx) => {
@@ -91,11 +92,10 @@ export default function Gallery() {
                 <Magnetic key={cat} range={20} strength={0.2}>
                   <button
                     onClick={() => setFilter(cat)}
-                    className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border transition-all cursor-pointer ${
-                      filter === cat
-                        ? 'border-accent-blue bg-accent-blue text-white shadow-[0_0_15px_rgba(37,99,235,0.25)]'
-                        : 'border-border-subtle text-text-secondary hover:border-text-primary hover:text-text-primary bg-dark-card/30'
-                    }`}
+                    className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border transition-all cursor-pointer ${filter === cat
+                      ? 'border-accent-blue bg-accent-blue text-white shadow-[0_0_15px_rgba(37,99,235,0.25)]'
+                      : 'border-border-subtle text-text-secondary hover:border-text-primary hover:text-text-primary bg-dark-card/30'
+                      }`}
                   >
                     {label}
                   </button>
@@ -129,6 +129,13 @@ export default function Gallery() {
                 {/* Dark Vignette Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/20 to-transparent opacity-0 group-hover:opacity-85 transition-opacity duration-300 flex flex-col justify-end p-6" />
 
+                {/* Link Indicator Icon */}
+                {item.link && (
+                  <div className="absolute top-4 right-4 p-2 bg-dark-bg/60 backdrop-blur-md rounded-full border border-border-subtle opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-lg">
+                    <ArrowUpRight className="w-4 h-4 text-accent-blue" />
+                  </div>
+                )}
+
                 {/* Info Text Overlay */}
                 <div className="absolute bottom-0 left-0 w-full p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-350 ease-out z-10">
                   <span className="text-[10px] font-bold tracking-wider text-accent-blue uppercase mb-1.5 block">
@@ -138,6 +145,17 @@ export default function Gallery() {
                     {item.title}
                   </h3>
                 </div>
+
+                {/* Clickable link overlay if defined */}
+                {item.link && (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 z-30 cursor-pointer"
+                    aria-label={`View ${item.title}`}
+                  />
+                )}
 
               </motion.div>
             ))}

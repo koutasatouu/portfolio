@@ -60,34 +60,34 @@ export const translations = {
           result: "+45% Conversion Lift"
         },
         2: {
-          title: "E-Library Knowledge Hub",
-          category: "Software System",
-          description: "A cloud-based digital reading and library catalogue portal enabling access to over 10,000 journals.",
-          result: "12k+ Active Readers"
+          title: "Karsa Coffee",
+          category: "Web Dev & Design",
+          description: "A minimalist web interface and interactive menu developed for a creative coffee and community workspace.",
+          result: "+30% Online Orders"
         },
         3: {
-          title: "Velo POS System",
-          category: "Web Application",
-          description: "A high-speed cash register and real-time stock inventory dashboard for small-to-medium retail outlets.",
-          result: "2.3x Faster Checkout"
+          title: "Bura Bura Coffee",
+          category: "Web Dev & Design",
+          description: "A playful, animated landing page with responsive layouts designed to showcase signature coffee blends.",
+          result: "5k+ Monthly Visitors"
         },
         4: {
-          title: "Karsa Identity System",
-          category: "Branding & Graphic Design",
-          description: "An editorial visual identity, brand guideline system, and stationery suite crafted for an architecture firm.",
-          result: "Cohesive Identity System"
+          title: "Bento Coffee",
+          category: "Web Dev & Design",
+          description: "A modern, Japanese-inspired e-commerce platform and reservation web system with seamless checkout.",
+          result: "15% Bounce Rate Drop"
         },
         5: {
-          title: "Teman Nonkrong Campaign",
-          category: "Social Media Strategy",
-          description: "A curated visual layout grid, video reels, and promotional copy generated for a coffee shop launch.",
-          result: "300k+ Impressions Reach"
+          title: "Zanoid",
+          category: "Web Dev & Design",
+          description: "An ultra-premium, interactive agency website highlighting bespoke product launches and brand layouts.",
+          result: "2.5x Engagement Rate"
         },
         6: {
-          title: "Zanoid Commercial Reel",
-          category: "Video Editing & Motion",
-          description: "A 60-second high-energy product launch advertisement featuring fluid transitions and sound design.",
-          result: "1.2M Views Viral Reel"
+          title: "Kopi Wet Pule",
+          category: "Web Dev & Design",
+          description: "A neighborhood coffee shop directory and community hub featuring local events and menu integrations.",
+          result: "8k+ Active Users"
         }
       }
     },
@@ -98,6 +98,30 @@ export const translations = {
       deliverablesLabel: "Core Deliverables",
       skillsLabel: "Skills Demonstrated",
       items: [
+        {
+          role: "Core Developer",
+          company: "Texere",
+          period: "June 3, 2026 - Present",
+          description: "Leading frontend development and digital implementation for Texere, crafting premium high-fidelity websites, design systems, and responsive digital products.",
+          highlights: [
+            "Developing and maintaining interactive, pixel-perfect web interfaces using React, Tailwind CSS, and Astro.",
+            "Building reusable design tokens and layout modules to maintain absolute visual and brand layout consistency.",
+            "Structuring performance-first codebase optimizations and semantic SEO hierarchies to enhance site speed and usability.",
+            "Collaborating closely with designers and project stakeholders to deliver premium end-to-end digital solutions."
+          ]
+        },
+        {
+          role: "Volunteer Translator",
+          company: "Tomo Scans",
+          period: "July 2025 - Present",
+          description: "Providing JP-to-EN translation scripts for the fan translation release of the popular manga series 'Days with My Stepsister' (Gimai Seikatsu) under the Tomo Scans community group.",
+          highlights: [
+            "Translated raw Japanese dialogues into natural, contextually accurate English translation scripts.",
+            "Collaborated closely with proofreaders and editors to ensure consistency in character voices and story pacing.",
+            "Analyzed cultural nuances, wordplay, and idiomatic expressions to localize scripts naturally for a global audience.",
+            "Contributed to scanlation chapters read by tens of thousands of global readers on MangaDex."
+          ]
+        },
         {
           role: "Software Engineer Intern",
           company: "PT. Indo Techno Medic",
@@ -131,17 +155,6 @@ export const translations = {
             "Conceptualized and designed immersive visual environments to enhance the project's storytelling.",
             "Collaborated directly with the director and production team to integrate visual elements seamlessly into the storyline.",
             "Conducted quality assurance checks on all visual assets to maintain design consistency and accuracy throughout the production lifecycle."
-          ]
-        },
-        {
-          role: "Student Software Engineer",
-          company: "Wikrama 1 Jepara High School",
-          period: "July 2021 - June 2024",
-          description: "Designed and implemented web-based software, managed databases, and developed interactive frontends as part of the core software engineering curriculum and client productions.",
-          highlights: [
-            "Programmed custom library catalog systems and POS interfaces using PHP and CodeIgniter.",
-            "Styled responsive, lightweight student portals and landing pages using CSS and Tailwind CSS.",
-            "Designed print materials, banners, and layout vectors using Adobe Photoshop and Illustrator."
           ]
         }
       ]
@@ -237,6 +250,8 @@ export const translations = {
       btnSubmitting: "Sending Message...",
       successHeadline: "Message Sent!",
       successDesc: "Thank you for reaching out. I've received your query and will reply within 24 hours.",
+      errorHeadline: "Submission Failed",
+      errorDesc: "Something went wrong. Please try again or email me directly at radityaabib511@gmail.com",
       btnReset: "Send Another Message"
     },
     footer: {
@@ -304,34 +319,34 @@ export const translations = {
           result: "+45% Kenaikan Konversi"
         },
         2: {
-          title: "E-Library Knowledge Hub",
-          category: "Sistem Perangkat Lunak",
-          description: "Portal membaca digital berbasis cloud dan katalog perpustakaan yang memungkinkan akses ke lebih dari 10.000 jurnal.",
-          result: "12rb+ Pembaca Aktif"
+          title: "Karsa Coffee",
+          category: "Web Dev & Desain",
+          description: "Antarmuka web minimalis dan menu interaktif yang dikembangkan untuk ruang kopi kreatif dan komunitas.",
+          result: "+30% Pesanan Online"
         },
         3: {
-          title: "Velo POS System",
-          category: "Aplikasi Web",
-          description: "Mesin kasir berkecepatan tinggi dan dasbor inventaris stok waktu nyata untuk gerai ritel kecil hingga menengah.",
-          result: "2.3x Pembayaran Lebih Cepat"
+          title: "Bura Bura Coffee",
+          category: "Web Dev & Desain",
+          description: "Halaman arahan yang ceria dan penuh animasi dengan tata letak responsif untuk menampilkan racikan kopi khas.",
+          result: "5rb+ Pengunjung Bulanan"
         },
         4: {
-          title: "Karsa Identity System",
-          category: "Branding & Desain Grafis",
-          description: "Identitas visual editorial, sistem panduan merek, dan paket alat tulis yang dibuat untuk firma arsitektur.",
-          result: "Sistem Identitas Kohesif"
+          title: "Bento Coffee",
+          category: "Web Dev & Desain",
+          description: "Platform e-commerce modern terinspirasi gaya Jepang dan sistem reservasi web dengan proses checkout yang mulus.",
+          result: "Penurunan 15% Rasio Pantulan"
         },
         5: {
-          title: "Teman Nonkrong Campaign",
-          category: "Strategi Media Sosial",
-          description: "Kisi tata letak visual yang dikurasi, video gulungan, dan salinan promosi yang dibuat untuk peluncuran kedai kopi.",
-          result: "300rb+ Jangkauan Impresi"
+          title: "Zanoid",
+          category: "Web Dev & Desain",
+          description: "Situs web agensi interaktif ultra-premium yang menyoroti peluncuran produk khusus dan tata letak merek.",
+          result: "2.5x Tingkat Keterlibatan"
         },
         6: {
-          title: "Zanoid Commercial Reel",
-          category: "Pengeditan Video & Gerak",
-          description: "Iklan peluncuran produk berenergi tinggi berdurasi 60 detik yang menampilkan transisi lancar dan desain suara.",
-          result: "1.2Jt Penonton Reel Viral"
+          title: "Kopi Wet Pule",
+          category: "Web Dev & Desain",
+          description: "Direktori kedai kopi lingkungan dan pusat komunitas yang menampilkan acara lokal serta integrasi menu.",
+          result: "8rb+ Pengguna Aktif"
         }
       }
     },
@@ -342,6 +357,30 @@ export const translations = {
       deliverablesLabel: "Tanggung Jawab Utama",
       skillsLabel: "Keahlian yang Ditunjukkan",
       items: [
+        {
+          role: "Pengembang Inti",
+          company: "Texere",
+          period: "3 Juni 2026 - Sekarang",
+          description: "Memimpin pengembangan frontend dan implementasi digital untuk Texere, membuat situs web premium dengan fidelitas tinggi, sistem desain, serta produk digital yang responsif.",
+          highlights: [
+            "Mengembangkan dan memelihara antarmuka web interaktif yang presisi secara piksel menggunakan React, Tailwind CSS, dan Astro.",
+            "Membangun token desain terstandarisasi dan modul tata letak untuk menjaga konsistensi visual dan identitas merek.",
+            "Mengoptimalkan performa basis kode serta hierarki SEO semantik untuk meningkatkan kecepatan muat halaman dan kegunaan situs.",
+            "Berkolaborasi erat dengan desainer dan pemangku kepentingan proyek untuk menghadirkan solusi digital ujung-ke-ujung yang premium."
+          ]
+        },
+        {
+          role: "Penerjemah Sukarelawan",
+          company: "Tomo Scans",
+          period: "Juli 2025 - Sekarang",
+          description: "Menyediakan naskah terjemahan bahasa Jepang ke bahasa Inggris untuk perilisan terjemahan penggemar dari seri manga populer 'Days with My Stepsister' (Gimai Seikatsu) di bawah grup komunitas Tomo Scans.",
+          highlights: [
+            "Menerjemahkan dialog asli bahasa Jepang menjadi draf naskah bahasa Inggris yang alami dan akurat secara konteks.",
+            "Bekerja sama erat dengan proofreader dan editor untuk memastikan konsistensi suara karakter serta alur cerita.",
+            "Menganalisis nuansa budaya, permainan kata, dan ekspresi idiomatis untuk melokalisasi naskah rilis secara natural bagi audiens global.",
+            "Berkontribusi pada bab-bab rilis yang dibaca oleh puluhan ribu pembaca global di platform MangaDex."
+          ]
+        },
         {
           role: "Magang Rekayasa Perangkat Lunak",
           company: "PT. Indo Techno Medic",
@@ -375,17 +414,6 @@ export const translations = {
             "Mengonseptualisasikan dan merancang lingkungan visual yang imersif untuk meningkatkan penceritaan proyek.",
             "Berkolaborasi langsung dengan sutradara dan tim produksi untuk mengintregasikan elemen visual secara mulus ke dalam jalan cerita.",
             "Melakukan pemeriksaan jaminan kualitas pada semua aset visual untuk menjaga konsistensi desain dan akurasi sepanjang siklus hidup produksi."
-          ]
-        },
-        {
-          role: "Siswa Rekayasa Perangkat Lunak",
-          company: "SMK Wikrama 1 Jepara",
-          period: "Juli 2021 - Juni 2024",
-          description: "Merancang dan menerapkan perangkat lunak berbasis web, mengelola basis data, dan mengembangkan frontend interaktif sebagai bagian dari kurikulum inti rekayasa perangkat lunak dan produksi klien.",
-          highlights: [
-            "Memprogram sistem katalog perpustakaan khusus dan antarmuka POS menggunakan PHP dan CodeIgniter.",
-            "Mendesain portal siswa dan halaman arahan yang responsif dan ringan menggunakan CSS dan Tailwind CSS.",
-            "Merancang materi cetak, spanduk, dan vektor tata letak menggunakan Adobe Photoshop dan Illustrator."
           ]
         }
       ]
@@ -481,6 +509,8 @@ export const translations = {
       btnSubmitting: "Mengirim Pesan...",
       successHeadline: "Pesan Terkirim!",
       successDesc: "Terima kasih telah menghubungi. Saya telah menerima pesan Anda dan akan membalas dalam waktu 24 jam.",
+      errorHeadline: "Pengiriman Gagal",
+      errorDesc: "Terjadi kesalahan. Silakan coba lagi atau kirim email langsung ke radityaabib511@gmail.com",
       btnReset: "Kirim Pesan Lain"
     },
     footer: {

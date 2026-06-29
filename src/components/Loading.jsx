@@ -16,7 +16,7 @@ export default function Loading() {
   useEffect(() => {
     // Lock scroll during loading
     document.body.style.overflow = 'hidden';
-    
+
     // Progress counter
     const timer = setInterval(() => {
       setProgress((prev) => {
@@ -40,7 +40,7 @@ export default function Loading() {
 
   useEffect(() => {
     if (!visible) return;
-    
+
     // Word cycler
     const wordTimer = setInterval(() => {
       setCurrentWordIndex((prev) => (prev + 1) % words.length);
@@ -54,7 +54,7 @@ export default function Loading() {
       {visible && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ 
+          exit={{
             y: "-100%",
             transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
           }}
@@ -62,7 +62,7 @@ export default function Loading() {
         >
           {/* Top Row: Brand & Status */}
           <div className="flex justify-between items-start">
-            <span className="font-display font-bold text-lg tracking-wider text-white">RADITYA.DEV</span>
+            <img src="/logo-transparent.png" alt="Raditya.Dev Logo" className="h-8 md:h-10 w-auto object-contain" />
             <span className="text-sm font-sans tracking-widest text-[#94a3b8] uppercase">
               {lang === 'en' ? "SYSTEM ONLINE" : "SISTEM AKTIF"}
             </span>
@@ -97,8 +97,8 @@ export default function Loading() {
               </span>
             </div>
             <div className="w-full h-[2px] bg-white/10 relative overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-[#2563eb] to-[#7c3aed]" 
+              <motion.div
+                className="h-full bg-gradient-to-r from-[#2563eb] to-[#7c3aed]"
                 style={{ width: `${progress}%` }}
                 layout
               />
