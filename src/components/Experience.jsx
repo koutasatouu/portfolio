@@ -161,8 +161,9 @@ export default function Experience() {
                 <h3 className="font-display font-bold text-xl md:text-3xl text-text-primary mb-2">
                   {activeItem.role}
                 </h3>
-                <span className="text-sm md:text-base font-semibold text-accent-blue">
-                  @{activeItem.company}
+                <span className="text-sm md:text-base font-semibold text-accent-blue inline-flex items-center">
+                  <span className="-translate-y-[2px] mr-px">@</span>
+                  <span>{activeItem.company}</span>
                 </span>
               </div>
 

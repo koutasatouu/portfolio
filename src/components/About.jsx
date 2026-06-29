@@ -30,7 +30,7 @@ export default function About() {
               name="Raditya Abib"
               title={lang === 'en' ? "Designer & Developer" : "Desainer & Developer"}
               handle="radityaabib"
-              status={lang === 'en' ? "Available for Projects" : "Tersedia untuk Proyek"}
+              status={lang === 'en' ? "Available" : "Tersedia"}
               contactText={t.navbar.cta}
               avatarUrl="/me.png"
               showUserInfo={true}

@@ -32,9 +32,9 @@ const projectsList = [
     link: 'https://zanoid.vercel.app/',
   },
   {
-    image: 'https://api.microlink.io/?url=https%3A%2F%2Fkopiwetpule.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Ftoleransikopi.vercel.app%2F&screenshot=true&embed=screenshot.url',
     technologies: ['React.js', 'Tailwind CSS', 'Framer Motion'],
-    link: 'https://kopiwetpule.vercel.app/',
+    link: 'https://toleransikopi.vercel.app/',
   },
 ];
 

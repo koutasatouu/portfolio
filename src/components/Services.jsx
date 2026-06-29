@@ -25,6 +25,7 @@ const servicesList = [
 
 export default function Services() {
   const { t } = useApp();
+  const cardSwapRef = React.useRef(null);
 
   const handleScrollToContact = (e) => {
     e.preventDefault();
@@ -52,7 +53,7 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left Column: text description */}
           <div className="lg:col-span-5 text-left">
             <span className="text-xs font-bold tracking-widest text-accent-blue uppercase mb-4 block">{t.services.tag}</span>
@@ -64,10 +65,15 @@ export default function Services() {
             </p>
 
             <div className="flex flex-col gap-4">
-              {items.map((service) => {
+              {items.map((service, idx) => {
                 const Icon = service.icon;
                 return (
-                  <div key={service.title} className="flex items-center gap-4 p-4 squircle-sm border border-border-subtle bg-dark-card/30">
+                  <button
+                    key={service.title}
+                    type="button"
+                    onClick={() => cardSwapRef.current?.goTo(idx)}
+                    className="w-full text-left flex items-center gap-4 p-4 squircle-sm border border-border-subtle bg-dark-card/30 hover:bg-dark-card-hover/40 hover:border-accent-blue/30 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-1 focus:ring-accent-blue/50"
+                  >
                     <div className={`p-2.5 squircle-sm border ${service.colorClass}`}>
                       <Icon size={18} />
                     </div>
@@ -75,7 +81,7 @@ export default function Services() {
                       <h4 className="font-display font-bold text-xs md:text-sm text-text-primary">{service.title}</h4>
                       <p className="font-sans text-[11px] text-text-muted">{service.description.slice(0, 50)}...</p>
                     </div>
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -84,6 +90,7 @@ export default function Services() {
           {/* Right Column: CardSwap Stack */}
           <div className="lg:col-span-7 flex justify-center items-center h-[520px] overflow-visible relative">
             <CardSwap
+              ref={cardSwapRef}
               width={400}
               height="auto"
               cardDistance={25}

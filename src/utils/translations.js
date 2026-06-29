@@ -84,7 +84,7 @@ export const translations = {
           result: "2.5x Engagement Rate"
         },
         6: {
-          title: "Kopi Wet Pule",
+          title: "Toleransi Kopi",
           category: "Web Dev & Design",
           description: "A neighborhood coffee shop directory and community hub featuring local events and menu integrations.",
           result: "8k+ Active Users"
@@ -100,7 +100,7 @@ export const translations = {
       items: [
         {
           role: "Core Developer",
-          company: "Texere",
+          company: "Texere Studio",
           period: "June 3, 2026 - Present",
           description: "Leading frontend development and digital implementation for Texere, crafting premium high-fidelity websites, design systems, and responsive digital products.",
           highlights: [
@@ -343,7 +343,7 @@ export const translations = {
           result: "2.5x Tingkat Keterlibatan"
         },
         6: {
-          title: "Kopi Wet Pule",
+          title: "Toleransi Kopi",
           category: "Web Dev & Desain",
           description: "Direktori kedai kopi lingkungan dan pusat komunitas yang menampilkan acara lokal serta integrasi menu.",
           result: "8rb+ Pengguna Aktif"
@@ -359,7 +359,7 @@ export const translations = {
       items: [
         {
           role: "Pengembang Inti",
-          company: "Texere",
+          company: "Texere Studio",
           period: "3 Juni 2026 - Sekarang",
           description: "Memimpin pengembangan frontend dan implementasi digital untuk Texere, membuat situs web premium dengan fidelitas tinggi, sistem desain, serta produk digital yang responsif.",
           highlights: [

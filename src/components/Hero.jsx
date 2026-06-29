@@ -61,6 +61,7 @@ import RotatingText from './react-bits/RotatingText';
 
 export default function Hero() {
   const { t, lang } = useApp();
+  const [currentRoleIndex, setCurrentRoleIndex] = React.useState(0);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -137,13 +138,21 @@ export default function Hero() {
           {/* Subtitle Badge */}
           <motion.div
             variants={childVariants}
-            className="mb-6 px-4 py-1.5 rounded-full border border-border-subtle bg-dark-card/30 backdrop-blur-md flex items-center gap-2 text-xs md:text-sm font-semibold tracking-wider text-text-secondary"
+            layout
+            layoutDependency={currentRoleIndex}
+            transition={{
+              layout: { type: "spring", stiffness: 350, damping: 30 }
+            }}
+            className="mb-6 px-2 py-1.5 squircle-md border border-border-subtle bg-dark-card/30 backdrop-blur-md flex items-center gap-2 text-xs md:text-sm font-semibold tracking-wider text-text-secondary"
           >
-            <span className="w-2 h-2 rounded-md bg-accent-blue animate-pulse" />
-            <span>{lang === 'en' ? "Hello I'm " : "Halo Saya "}</span>
+            <motion.span layout="position" className="w-2 h-2 rounded-md bg-accent-blue animate-pulse ml-1" />
+            <motion.span layout="position">
+              {lang === 'en' ? "Hello I'm " : "Halo Saya "}
+            </motion.span>
             <RotatingText
               texts={roles}
-              mainClassName="text-accent-blue font-bold inline-flex px-2 py-0.5 rounded-full bg-accent-blue/10 border border-accent-blue/20 ml-1"
+              layout="position"
+              mainClassName="text-accent-blue font-bold inline-flex px-3 py-0.5 squircle-sm bg-accent-blue/10 border border-accent-blue/20 ml-1"
               staggerFrom="last"
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -152,6 +161,8 @@ export default function Hero() {
               splitLevelClassName="overflow-hidden pb-0.5"
               transition={{ type: "spring", damping: 30, stiffness: 400 }}
               rotationInterval={2500}
+              onNext={setCurrentRoleIndex}
+              animatePresenceMode="popLayout"
             />
           </motion.div>
 

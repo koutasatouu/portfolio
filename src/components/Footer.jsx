@@ -85,11 +85,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
 
         {/* Left: Brand logo & copyright */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2 ">
           <a
             href="#home"
             onClick={handleScrollToTop}
-            className="font-display font-black text-lg tracking-wider text-text-primary"
+            className="font-display font-black text-lg tracking-wider text-text-primary mb-2"
           >
             <img src="/logo-transparent-blue.png" alt="Raditya.Dev Logo" className="h-8 w-auto object-contain" />
           </a>
