@@ -162,6 +162,12 @@ export default function Testimonials() {
 
     setSubmitStatus('sending');
 
+    const payload = {
+      ...form,
+      platform: form.platform === 'none' ? '' : form.platform,
+      approved: 'Not Yet Approved'
+    };
+
     try {
       const response = await fetch(apiURL, {
         method: 'POST',
@@ -169,7 +175,7 @@ export default function Testimonials() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify(payload)
       });
 
       setSubmitStatus('success');
@@ -177,7 +183,7 @@ export default function Testimonials() {
         name: '',
         role: '',
         company: '',
-        platform: '',
+        platform: 'none',
         handle: '',
         rating: 5,
         quote: ''
