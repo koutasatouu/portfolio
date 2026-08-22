@@ -12,9 +12,9 @@ const projectsList = [
     link: 'https://tetracoffee.vercel.app/',
   },
   {
-    image: 'https://api.microlink.io/?url=https%3A%2F%2Fkarsacoffee.vercel.app%2F&screenshot=true&embed=screenshot.url',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fvisionemanet-nu.vercel.app%2F&screenshot=true&embed=screenshot.url',
     technologies: ['React.js', 'Vite', 'Tailwind CSS'],
-    link: 'https://karsacoffee.vercel.app/',
+    link: 'https://visionemanet-nu.vercel.app/',
   },
   {
     image: 'https://api.microlink.io/?url=https%3A%2F%2Fburaburacoffee.vercel.app%2F&screenshot=true&embed=screenshot.url',

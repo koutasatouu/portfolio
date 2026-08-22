@@ -60,10 +60,10 @@ export const translations = {
           result: "+45% Conversion Lift"
         },
         2: {
-          title: "Karsa Coffee",
+          title: "Visione Manet",
           category: "Web Dev & Design",
-          description: "A minimalist web interface and interactive menu developed for a creative coffee and community workspace.",
-          result: "+30% Online Orders"
+          description: "A creative web platform and digital archive developed as a high-fidelity prototype showcase.",
+          result: "Prototype Launch"
         },
         3: {
           title: "Bura Bura Coffee",
@@ -319,10 +319,10 @@ export const translations = {
           result: "+45% Kenaikan Konversi"
         },
         2: {
-          title: "Karsa Coffee",
+          title: "Visione Manet",
           category: "Web Dev & Desain",
-          description: "Antarmuka web minimalis dan menu interaktif yang dikembangkan untuk ruang kopi kreatif dan komunitas.",
-          result: "+30% Pesanan Online"
+          description: "Sebuah platform web kreatif dan arsip digital yang dikembangkan sebagai showcase prototipe dengan fidelitas tinggi.",
+          result: "Peluncuran Prototipe"
         },
         3: {
           title: "Bura Bura Coffee",
