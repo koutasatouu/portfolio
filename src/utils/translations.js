@@ -60,10 +60,10 @@ export const translations = {
           result: "+45% Conversion Lift"
         },
         2: {
-          title: "Visione Manet",
+          title: "Visionema Net",
           category: "Web Dev & Design",
-          description: "A creative web platform and digital archive developed as a high-fidelity prototype showcase.",
-          result: "Prototype Launch"
+          description: "A creative web platform and digital hub developed for a premium social media agency.",
+          result: "Agency Showcase"
         },
         3: {
           title: "Bura Bura Coffee",
@@ -319,10 +319,10 @@ export const translations = {
           result: "+45% Kenaikan Konversi"
         },
         2: {
-          title: "Visione Manet",
+          title: "Visionema Net",
           category: "Web Dev & Desain",
-          description: "Sebuah platform web kreatif dan arsip digital yang dikembangkan sebagai showcase prototipe dengan fidelitas tinggi.",
-          result: "Peluncuran Prototipe"
+          description: "Sebuah platform web kreatif dan pusat digital yang dikembangkan untuk agensi media sosial premium.",
+          result: "Showcase Agensi"
         },
         3: {
           title: "Bura Bura Coffee",
