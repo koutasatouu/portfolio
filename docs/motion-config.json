@@ -1,0 +1,40 @@
+{
+  "sourceOfTruth": "src/styles/global.css",
+  "durationsMs": {
+    "fast": 160,
+    "medium": 240
+  },
+  "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+  "animatedProperties": [
+    "transform"
+  ],
+  "projectArrow": {
+    "x": 4,
+    "y": -4
+  },
+  "textLinkArrow": {
+    "x": 2,
+    "y": 2
+  },
+  "buttonActive": {
+    "y": 1,
+    "animated": false
+  },
+  "filter": "instant",
+  "disclosure": "instant, native details",
+  "reducedMotion": {
+    "animations": "none",
+    "transitions": "none",
+    "scrollBehavior": "auto"
+  },
+  "anchorScroll": {
+    "durationMs": [
+      420,
+      800
+    ],
+    "easing": "1 - (1 - progress)^4",
+    "interruptible": true,
+    "reducedMotion": "instant",
+    "wheelAndTouch": "native"
+  }
+}

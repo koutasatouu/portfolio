@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "width": 320,
+      "overflow": false,
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "motion": {
+    "scroll": "auto",
+    "transition": "0s"
+  },
+  "ssr": 6,
+  "interactions": "Disabled categories, six text-only projects, expanded details, keyboard disclosures, and smooth anchor scroll passed"
+}

@@ -1,9 +1,247 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PortfolioApp from '../components/PortfolioApp.jsx';
+import "../styles/global.css";
+import "@fontsource/archivo/400.css";
+import "@fontsource/archivo/600.css";
+import "@fontsource/archivo/800.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import WorkIndex from "../components/WorkIndex.jsx";
+import { experience } from "../data/portfolio";
 ---
 
-<Layout>
-	<!-- Unified Client-Side Application Island -->
-	<PortfolioApp client:only="react" />
-</Layout>
+<!doctype html>
+<html lang="en">
+    <head
+        ><meta charset="UTF-8" /><meta
+            name="viewport"
+            content="width=device-width"
+        /><meta
+            name="description"
+            content="Raditya Abib — designer, developer, and video editor. Selected websites and experience in web development, graphic design, and video production."
+        /><meta name="theme-color" content="#0A080D" /><title>
+            Raditya Abib — Design, code & motion
+        </title><link
+            rel="icon"
+            href="/favicon.svg"
+            type="image/svg+xml"
+        /></head
+    >
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+        <header class="site-header shell">
+            <a class="wordmark" href="#home" aria-label="Raditya Abib, home"
+                >ra</a
+            ><nav aria-label="Main navigation">
+                <a href="#work">Work <span>01</span></a><a href="#about"
+                    >About <span>02</span></a
+                ><a href="#experience">Experience <span>03</span></a>
+            </nav><a class="header-contact" href="#contact"
+                >Let’s talk <span aria-hidden="true">↗</span></a>
+        </header>
+        <main id="main">
+            <section class="hero shell" id="home" aria-labelledby="hero-title">
+                <div class="hero-top mono">
+                    <p>Raditya Abib / Independent creative</p><p>
+                        Design · Development · Video
+                    </p>
+                </div><div class="hero-grid">
+                    <div class="hero-copy">
+                        <h1 id="hero-title">
+                            A designer’s eye.<br />A developer’s<br /><span
+                                >mind.</span>
+                        </h1><div class="hero-bottom">
+                            <span class="asterisk" aria-hidden="true">✳</span
+                            ><div>
+                                <p>
+                                    I connect visual ideas with working code.<br
+                                        class="desktop-break"
+                                    /> Websites, identities, and stories in motion.
+                                </p><a class="text-link" href="#work"
+                                    >Explore selected work <span
+                                        aria-hidden="true">↘</span
+                                    ></a>
+                            </div>
+                        </div>
+                    </div><figure class="portrait">
+                        <div class="portrait-frame">
+                            <img
+                                src="/portrait.webp"
+                                alt="Raditya Abib, designer, developer, and video editor"
+                                width="1500"
+                                height="2000"
+                                fetchpriority="high"
+                            />
+                        </div><figcaption class="mono">
+                            <span>Behind the work</span><span>RA / 01</span>
+                        </figcaption>
+                    </figure>
+                </div><div class="hero-foot mono">
+                    <span>Ideas into interfaces.</span><a href="#work"
+                        >Scroll to explore ↓</a>
+                </div>
+            </section>
+            <section
+                id="work"
+                class="section shell"
+                aria-labelledby="work-title"
+            >
+                <div class="section-heading">
+                    <p class="eyebrow">01 / Selected work</p><div>
+                        <h2 id="work-title">Built with intent.</h2><p>
+                            Selected websites, from visual direction to working
+                            interfaces.<br />Open a project to explore its scope
+                            and visit the live site.
+                        </p>
+                    </div>
+                </div><WorkIndex client:load />
+            </section>
+            <section
+                id="about"
+                class="about section"
+                aria-labelledby="about-title"
+            >
+                <div class="shell">
+                    <div class="section-heading">
+                        <p class="eyebrow">
+                            02 / The person & the practice
+                        </p><div>
+                            <h2 id="about-title">
+                                Curiosity connects<br />the disciplines.
+                            </h2>
+                        </div>
+                    </div><div class="about-content">
+                        <p class="about-lead">
+                            I’m Raditya. I work where<br />visual thinking meets<br
+                            />technical problem-solving.
+                        </p><div>
+                            <p>
+                                I’m a web developer and visual designer based in
+                                Bantul, Yogyakarta, studying Informatics
+                                Engineering at Ahmad Dahlan University since
+                                2024. My development work spans PHP with Laravel
+                                and CodeIgniter, responsive React interfaces,
+                                and SQL databases.
+                            </p><p>
+                                Alongside development, I create brand assets,
+                                social media layouts, and promotional video
+                                content. I bring the same attention to visual
+                                consistency, maintainable code, and usability
+                                across both disciplines.
+                            </p><a
+                                class="text-link"
+                                href="https://github.com/koutasatouu"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Explore my GitHub <span aria-hidden="true"
+                                    >↗</span
+                                ><span class="sr-only">
+                                    (opens in a new tab)</span
+                                ></a>
+                        </div>
+                    </div><div class="capabilities">
+                        <div>
+                            <span class="mono">01 / Design</span><p>
+                                Visual identities.<br />Interfaces with purpose.
+                            </p><small>Illustrator · Photoshop · Canva</small>
+                        </div><div>
+                            <span class="mono">02 / Development</span><p>
+                                Responsive frontends.<br />Structured web
+                                systems.
+                            </p><small
+                                >React · Tailwind · Laravel · CodeIgniter</small>
+                        </div><div>
+                            <span class="mono">03 / Motion</span><p>
+                                Editing with rhythm.<br />Stories that move.
+                            </p><small>Premiere Pro · After Effects</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                id="experience"
+                class="section shell"
+                aria-labelledby="experience-title"
+            >
+                <div class="section-heading">
+                    <p class="eyebrow">03 / Along the way</p><div>
+                        <h2 id="experience-title">
+                            Experience, in practice.
+                        </h2><p>
+                            Across studios, software teams, and creative
+                            communities.
+                        </p>
+                    </div>
+                </div><div class="experience-list">
+                    {
+                        experience.map(([date, role, company, description]) => (
+                            <details>
+                                <>
+                                    <summary>
+                                        <>
+                                            <span class="mono date">
+                                                {date}
+                                            </span>
+                                            <span>
+                                                <>
+                                                    <strong>{role}</strong>
+                                                    <span class="company">
+                                                        {company}
+                                                    </span>
+                                                </>
+                                            </span>
+                                            <span
+                                                class="expand"
+                                                aria-hidden="true"
+                                            >
+                                                +
+                                            </span>
+                                        </>
+                                    </summary>
+                                    <p>{description}</p>
+                                </>
+                            </details>
+                        ))
+                    }
+                </div>
+            </section>
+            <section
+                id="contact"
+                class="contact section"
+                aria-labelledby="contact-title"
+            >
+                <div class="shell">
+                    <p class="eyebrow">04 / Start a conversation</p><h2
+                        id="contact-title"
+                    >
+                        Have an idea?<br />Let’s make it <em>real.</em>
+                    </h2><div class="contact-bottom">
+                        <a
+                            class="contact-email"
+                            href="mailto:radityaabib511@gmail.com"
+                            >radityaabib511@gmail.com <span aria-hidden="true"
+                                >↗</span
+                            ></a
+                        ><p>
+                            Tell me what you’re working on.<br />We’ll figure
+                            out the next step together.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main><footer class="shell">
+            <p class="mono">© {new Date().getFullYear()} Raditya Abib</p><div>
+                <a
+                    href="https://www.linkedin.com/in/radityaabib/"
+                    target="_blank"
+                    rel="noreferrer"
+                    >LinkedIn<span class="sr-only"> (opens in a new tab)</span> ↗</a
+                ><a
+                    href="https://www.instagram.com/radityaabib/"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Instagram<span class="sr-only"> (opens in a new tab)</span> ↗</a
+                ><a href="#home">Back to top ↑</a>
+            </div>
+        </footer>
+        <script src="../scripts/smooth-scroll.ts"></script></body>
+</html>
