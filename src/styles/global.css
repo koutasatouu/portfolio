@@ -33,3 +33,39 @@
 /* Text-only project index. Details remain available on click and keyboard. */
 .project-disclosure>summary{grid-template-columns:30px 1fr 32px;gap:28px}
 @media(max-width:700px){.project-disclosure>summary{grid-template-columns:25px 1fr 24px;gap:16px}.project-intro{grid-column:2;grid-row:1}.project-disclosure .row-arrow{grid-column:3;grid-row:1}}
+
+
+/* Brand marks: supplied PNGs act as alpha masks so they take the surface's palette color. */
+.logo-mark,.logo-word{display:block;background-color:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:left center;mask-position:left center;-webkit-mask-size:contain;mask-size:contain}
+.logo-mark{width:38px;height:38px;color:var(--color-signal);-webkit-mask-image:url(/brand/ra-mark.png);mask-image:url(/brand/ra-mark.png)}
+.logo-word{width:clamp(200px,24vw,340px);aspect-ratio:1035/396;color:var(--color-signal);-webkit-mask-image:url(/brand/raditya-wordmark.png);mask-image:url(/brand/raditya-wordmark.png)}
+.wordmark{display:flex;align-items:center}
+.footer-brand{display:flex;flex-direction:column;gap:14px}
+@media(max-width:700px){.logo-mark{width:32px;height:32px}.logo-word{width:210px}}
+
+/* Availability, facts, CV. */
+.availability{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--color-rule);padding:6px 12px;margin-bottom:20px;color:var(--color-paper)!important;font-size:12px!important}
+.availability i{display:block;width:8px;height:8px;background:var(--color-signal)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:72px 0 0;padding-top:28px;border-top:1px solid var(--color-rule)}
+.facts>div{display:flex;flex-direction:column-reverse;gap:10px}
+.facts dd{margin:0;font-size:clamp(44px,5.6vw,84px);font-weight:800;line-height:1;letter-spacing:-.055em}
+.cv-links{display:flex;flex-wrap:wrap;gap:8px 32px;margin-top:8px}
+.cap-label{margin-top:56px}.cap-label+.capabilities{margin-top:16px}
+@media(max-width:700px){.facts{margin-top:44px;gap:12px}.facts dt{font-size:10px}.cap-label{margin-top:40px}}
+
+/* Experience groups. */
+.exp-group+.exp-group{margin-top:64px}
+.exp-group-title{font-weight:400;text-transform:uppercase;letter-spacing:.06em;color:var(--color-muted);padding-bottom:14px}
+.date.is-current{color:var(--color-paper)}
+.date.is-current::before{content:'';display:inline-block;width:7px;height:7px;background:var(--color-signal);margin-right:10px}
+
+/* Work previews: muted thumbnail in the row, full preview inside the details. */
+.project-disclosure>summary{grid-template-columns:30px 1fr 188px 32px}
+.project-thumb{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--color-rule);opacity:.5;filter:grayscale(1);transition:opacity var(--motion-medium) var(--motion-ease)}
+.project-thumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.project-disclosure>summary:hover .project-thumb,.project-disclosure>summary:focus-visible .project-thumb,.project-disclosure[open] .project-thumb{opacity:1;filter:none}
+.project-figure{grid-column:1/-1;aspect-ratio:16/8;max-height:460px;overflow:hidden;background:var(--color-rule);border:1px solid var(--color-rule)}
+.project-figure img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.project-figure.is-study{background:var(--color-ink)}.project-figure.is-study img{object-fit:contain;object-position:center}
+@media(max-width:1000px){.project-disclosure>summary{grid-template-columns:24px 1fr 140px 24px}}
+@media(max-width:700px){.project-disclosure>summary{grid-template-columns:25px 1fr 24px}.project-thumb{display:none}.project-figure{aspect-ratio:16/10}}

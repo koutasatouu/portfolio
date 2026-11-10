@@ -14,7 +14,7 @@ for(const width of [1440,768,390,320]){
  results.push({width,overflow,violations:axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)}))});
 }
 
-for(const name of ['Design','Motion'])if(!await page.getByRole('button',{name}).isDisabled())throw Error(name+' should be disabled');
+for(const name of ['Design','Motion'])if(await page.getByRole('button',{name}).isDisabled())throw Error(name+' should be enabled');
 await page.getByRole('button',{name:'Web',exact:false}).click();
 if(await page.locator('.work-row').count()!==6)throw Error('Web count failed');
 await page.locator('.project-disclosure summary').first().focus();await page.keyboard.press('Enter');
@@ -34,6 +34,6 @@ const nojs=await browser.newContext({javaScriptEnabled:false});const fallback=aw
 const ssr=await fallback.locator('.work-row').count();
 const report={results,errors,motion,ssr,interactions:'Disabled categories, six text-only projects, expanded details, keyboard disclosures, and smooth anchor scroll passed'};
 fs.writeFileSync('docs/test-results.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));await browser.close();
-if(errors.length||results.some(r=>r.overflow||r.violations.length)||ssr!==6)process.exit(1);
+if(errors.length||results.some(r=>r.overflow||r.violations.length)||ssr!==8)process.exit(1);
 
 

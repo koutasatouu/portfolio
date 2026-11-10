@@ -6,7 +6,13 @@ import "@fontsource/archivo/800.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import WorkIndex from "../components/WorkIndex.jsx";
-import { experience } from "../data/portfolio";
+import { experience, experienceGroups, projects, cv } from "../data/portfolio";
+const liveSites = projects.filter((p) => p.url).length;
+const cvLinks = cv.filter((c) => c.href);
+const grouped = experienceGroups.map((name) => ({
+  name,
+  items: experience.filter((e) => e[4] === name),
+}));
 ---
 
 <!doctype html>
@@ -25,7 +31,7 @@ import { experience } from "../data/portfolio";
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header shell">
-      <a class="wordmark" href="#home" aria-label="Raditya Abib, home">ra</a
+      <a class="wordmark" href="#home" aria-label="Raditya Abib, home"><span class="logo-mark" aria-hidden="true"></span></a
       ><nav aria-label="Main navigation">
         <a href="#work">Work <span>01</span></a><a href="#about"
           >About <span>02</span></a
@@ -73,7 +79,7 @@ import { experience } from "../data/portfolio";
                 </svg>
               </span>
               <div>
-                <p>
+                <p class="availability mono"><i aria-hidden="true"></i>Open for freelance · Yogyakarta (WIB)</p><p>
                   I connect visual ideas with working code.<br
                     class="desktop-break"
                   /> Websites, identities, and stories in motion.
@@ -132,7 +138,7 @@ import { experience } from "../data/portfolio";
         <div class="section-heading">
           <p class="eyebrow">01 / Selected work</p><div>
             <h2 id="work-title">Built with intent.</h2><p>
-              Selected websites, from visual direction to working interfaces.<br
+              Selected websites and creative studies, from visual direction to working interfaces.<br
               />Open a project to explore its scope and visit the live site.
             </p>
           </div>
@@ -162,6 +168,9 @@ import { experience } from "../data/portfolio";
                 layouts, and promotional video content. I bring the same
                 attention to visual consistency, maintainable code, and
                 usability across both disciplines.
+              </p><p>
+                I also volunteer as a Japanese-to-English translator, working with
+                editors on context, character voice, and story pacing.
               </p><a
                 class="text-link"
                 href="https://github.com/koutasatouu"
@@ -182,7 +191,19 @@ import { experience } from "../data/portfolio";
                 ><span class="sr-only"> (opens in a new tab)</span></a
               >
             </div>
-          </div><div class="capabilities">
+          </div><dl class="facts">
+            <div><dt class="mono">Roles & communities</dt><dd>{experience.length}</dd></div>
+            <div><dt class="mono">Live websites</dt><dd>{liveSites}</dd></div>
+            <div><dt class="mono">Creative practice since</dt><dd>2022</dd></div>
+          </dl>
+          {cvLinks.length > 0 && (
+            <p class="cv-links">
+              {cvLinks.map((c) => (
+                <a class="text-link" href={c.href} download>{c.label}</a>
+              ))}
+            </p>
+          )}
+          <p class="mono cap-label">What I can take on</p><div class="capabilities">
             <div>
               <span class="mono">01 / Design</span><p>
                 Visual identities.<br />Interfaces with purpose.
@@ -212,26 +233,23 @@ import { experience } from "../data/portfolio";
           </div>
         </div><div class="experience-list">
           {
-            experience.map(([date, role, company, description]) => (
-              <details>
-                <>
-                  <summary>
-                    <>
-                      <span class="mono date">{date}</span>
+            grouped.map(({ name, items }) => (
+              <div class="exp-group">
+                <h3 class="exp-group-title mono">{name}</h3>
+                {items.map(([date, role, company, description]) => (
+                  <details>
+                    <summary>
+                      <span class:list={["mono date", { "is-current": /Present/.test(date) }]}>{date}</span>
                       <span>
-                        <>
-                          <strong>{role}</strong>
-                          <span class="company">{company}</span>
-                        </>
+                        <strong>{role}</strong>
+                        <span class="company">{company}</span>
                       </span>
-                      <span class="expand" aria-hidden="true">
-                        +
-                      </span>
-                    </>
-                  </summary>
-                  <p>{description}</p>
-                </>
-              </details>
+                      <span class="expand" aria-hidden="true">+</span>
+                    </summary>
+                    <p>{description}</p>
+                  </details>
+                ))}
+              </div>
             ))
           }
         </div>
@@ -258,8 +276,8 @@ import { experience } from "../data/portfolio";
         </div>
       </section>
     </main><footer class="shell">
-      <p class="mono">© {new Date().getFullYear()} Raditya Abib</p><div>
-        <a
+      <span class="footer-brand"><span class="logo-word" role="img" aria-label="Raditya, dev and design, established 2022"></span><p class="mono">© {new Date().getFullYear()} Raditya Abib</p></span><div>
+        <a href="https://github.com/koutasatouu" target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a><a
           href="https://www.linkedin.com/in/radityaabib/"
           target="_blank"
           rel="noreferrer"
