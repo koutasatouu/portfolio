@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+import "@fontsource/archivo/400.css";
+import "@fontsource/archivo/600.css";
+import "@fontsource/archivo/800.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import Icon from "../components/Icon.astro";
+import { site } from "../data/portfolio";
+import { copy, waLink } from "../data/copy";
+const { lang = "id", altPath = "/en/", selfPath = "/", home = true } = Astro.props;
+const c = copy[lang];
+const base = lang === "id" ? "/" : "/en/";
+const h = (id) => (home ? `#${id}` : `${base}#${id}`);
+const idPath = lang === "id" ? selfPath : altPath;
+const enPath = lang === "en" ? selfPath : altPath;
+const title = Astro.props.title ?? c.meta.title;
+---
+<!doctype html>
+<html lang={c.htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={c.meta.description} />
+    <meta name="theme-color" content="#0A080D" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Raditya Abib" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={c.meta.description} />
+    <meta property="og:image" content={new URL("/og-image.png", Astro.url.origin).href} />
+    <meta property="og:locale" content={lang === "id" ? "id_ID" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" hreflang="id" href={idPath} />
+    <link rel="alternate" hreflang="en" href={enPath} />
+    <link rel="alternate" hreflang="x-default" href={idPath} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{c.skip}</a>
+    <div class="site-bar">
+    <header class="site-header shell">
+      <a class="wordmark" href={h("home")} aria-label="Raditya Abib"><span class="logo-mark" aria-hidden="true"></span></a>
+      <nav aria-label={c.nav.label}>
+        <a href={h("work")}>{c.nav.work} <span>01</span></a>
+        <a href={h("packages")}>{c.nav.packages} <span>02</span></a>
+        <a href={h("about")}>{c.nav.about} <span>03</span></a>
+        <a href={h("experience")}>{c.nav.experience} <span>04</span></a>
+      </nav>
+      <div class="header-end">
+        <div class="lang-switch" role="group" aria-label={c.langLabel}>
+          <a href={idPath} hreflang="id" lang="id" aria-current={lang === "id" ? "true" : undefined}>ID</a>
+          <span aria-hidden="true">|</span>
+          <a href={enPath} hreflang="en" lang="en" aria-current={lang === "en" ? "true" : undefined}>EN</a>
+        </div>
+        <a class="header-contact" href={waLink(lang)} target="_blank" rel="noreferrer">WhatsApp<span class="sr-only"> ({lang === "id" ? "tab baru" : "new tab"})</span></a>
+      </div>
+    </header>
+    </div>
+    <main id="main"><slot /></main>
+    <footer class="shell">
+      <span class="footer-brand"><span class="logo-mark" role="img" aria-label="Raditya Abib"></span><p class="mono">© {new Date().getFullYear()} {c.footer.rights}</p></span>
+      <div>
+        <a href={site.github} target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (↗)</span></a>
+        <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn<span class="sr-only"> (↗)</span></a>
+        <a href={site.instagram} target="_blank" rel="noreferrer">Instagram<span class="sr-only"> (↗)</span></a>
+        <a href={copy[lang].review.path}>{c.footer.review}</a>
+        <a href={h("home")} class="flex items-center gap-1.5">{c.footer.back} <Icon name="up" /></a>
+      </div>
+      <script src="../scripts/smooth-scroll.ts"></script>
+      <script src="../scripts/disclosure.ts"></script>
+    </footer>
+  </body>
+</html>

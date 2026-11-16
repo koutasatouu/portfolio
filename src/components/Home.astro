@@ -1,0 +1,139 @@
+---
+import Icon from "./Icon.astro";
+import WorkIndex from "./WorkIndex.jsx";
+import Testimonials from "./Testimonials.jsx";
+import { site, experience, experienceGroups, packages, monthly, launchOffer, cv } from "../data/portfolio";
+import { copy, money, waLink } from "../data/copy";
+const { lang = "id" } = Astro.props;
+const c = copy[lang];
+const cvLinks = cv.filter((x) => x.href);
+const grouped = experienceGroups.map((g) => ({ name: g[lang], items: experience.filter((e) => e.group === g.key) }));
+---
+<section class="hero shell" id="home" aria-labelledby="hero-title">
+  <div class="hero-top mono"><p>Raditya Abib</p><p>{c.nav.work} · {c.nav.packages} · {c.nav.about}</p></div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-title">{c.hero.h1[0]}<br />{c.hero.h1[1]}<br /><span>{c.hero.h1[2]}</span></h1>
+      <div class="hero-bottom">
+        <span class="asterisk" aria-hidden="true"><Icon name="asterisk" size={60} /></span>
+        <div>
+          <p class="availability mono"><i aria-hidden="true"></i>{c.hero.availability}</p>
+          <p>{c.hero.tag[0]}<br class="desktop-break" /> {c.hero.tag[1]}</p>
+          <div class="hero-actions">
+            <a class="text-link" href="#work">{c.hero.explore} <span aria-hidden="true"><Icon name="right" /></span></a>
+            <a class="text-link" href={waLink(lang)} target="_blank" rel="noreferrer">{c.hero.chat} <span aria-hidden="true"><Icon name="right" /></span><span class="sr-only"> (↗)</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figure class="portrait">
+      <div class="portrait-frame"><img src="/portrait.webp" alt={c.hero.portraitAlt} width="1500" height="2000" fetchpriority="high" /></div>
+      <figcaption class="mono"><span>{c.hero.caption}</span><span>RA / 01</span></figcaption>
+    </figure>
+  </div>
+  <div class="hero-foot mono">
+    <span>{c.hero.foot}</span>
+    <div class="flex items-center gap-2"><a href="#work">{c.hero.scroll} </a><span class="asterisk" aria-hidden="true"><Icon name="down" /></span></div>
+  </div>
+</section>
+
+<section id="work" class="section shell" aria-labelledby="work-title">
+  <div class="section-heading"><p class="eyebrow">{c.work.eyebrow}</p><div><h2 id="work-title">{c.work.title}</h2><p>{c.work.lead}</p></div></div>
+  <WorkIndex client:load lang={lang} />
+</section>
+
+<section id="packages" class="section shell" aria-labelledby="packages-title">
+  <div class="section-heading"><p class="eyebrow">{c.packages.eyebrow}</p><div><h2 id="packages-title">{c.packages.title}</h2><p>{c.packages.lead}</p></div></div>
+  {launchOffer.active && <p class="offer-note mono">{c.packages.offer(launchOffer.slots)}</p>}
+  <div class="packages">
+    {packages.map((p) => {
+      const t = p.t[lang];
+      return (
+        <article class="package">
+          <p class="mono package-tag">{t.tag}</p>
+          <h3>{t.name}</h3>
+          <p class="package-for">{t.for}</p>
+          <p class="package-price">
+            {launchOffer.active ? (
+              <>
+                <span class="was"><span class="sr-only">{c.packages.normal} </span>{money(p.normal, lang)}</span>
+                <strong><span class="sr-only">{c.packages.launch} </span>{money(p.launch, lang)}</strong>
+              </>
+            ) : (<strong>{money(p.normal, lang)}</strong>)}
+          </p>
+          <p class="mono package-meta">{c.packages.revisions(p.revisions)} · {p.days[lang]}</p>
+          <ul>{t.items.map((i) => <li>{i}</li>)}</ul>
+          <a class="text-link" href={waLink(lang, c.wa.pkg(t.name))} target="_blank" rel="noreferrer">{c.packages.choose} <span aria-hidden="true"><Icon name="right" /></span><span class="sr-only"> (↗)</span></a>
+        </article>
+      );
+    })}
+  </div>
+  <div class="package-notes">
+    <div>
+      <h3 class="mono">{c.packages.monthlyTitle}</h3>
+      <dl>
+        {monthly.map((m) => (
+          <div><dt>{m.t[lang].name}</dt><dd><strong>{m.from ? c.packages.from + ' ' : ''}{money(m.price, lang)}{c.packages.perMonth}</strong><span>{m.t[lang].text}</span></dd></div>
+        ))}
+      </dl>
+    </div>
+    <div>
+      <h3 class="mono">{c.packages.termsTitle}</h3>
+      <ul>{c.packages.terms.map((x) => <li>{x}</li>)}</ul>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about section" aria-labelledby="about-title">
+  <div class="shell">
+    <div class="section-heading"><p class="eyebrow">{c.about.eyebrow}</p><div><h2 id="about-title">{c.about.h2[0]}<br />{c.about.h2[1]}</h2></div></div>
+    <div class="about-content">
+      <p class="about-lead">{c.about.lead[0]}<br />{c.about.lead[1]}</p>
+      <div>
+        <p>{c.about.p1}</p><p>{c.about.p2}</p><p>{c.about.p3}</p>
+        <a class="text-link" href={site.github} target="_blank" rel="noreferrer">{c.about.github} <span aria-hidden="true"><Icon name="right" /></span><span class="sr-only"> (↗)</span></a>
+      </div>
+    </div>
+    <dl class="facts">{c.about.facts.map(([k, v]) => <div><dt class="mono">{k}</dt><dd>{v}</dd></div>)}</dl>
+    {cvLinks.length > 0 && <p class="cv-links">{cvLinks.map((x) => <a class="text-link" href={x.href} download>{x.label[lang]}</a>)}</p>}
+    <p class="mono cap-label">{c.about.capLabel}</p>
+    <ul class="capabilities-list">{c.about.caps.map((x) => <li>{x}</li>)}</ul>
+  </div>
+</section>
+
+<section id="experience" class="section shell" aria-labelledby="experience-title">
+  <div class="section-heading"><p class="eyebrow">{c.experience.eyebrow}</p><div><h2 id="experience-title">{c.experience.title}</h2></div></div>
+  <div class="experience-list">
+    {grouped.map(({ name, items }) => (
+      <div class="exp-group">
+        <h3 class="exp-group-title mono">{name}</h3>
+        {items.map((e) => (
+          <details>
+            <summary>
+              <span class:list={["mono date", { "is-current": e.current }]}>{e.date[lang]}</span>
+              <span><strong>{e.role[lang]}</strong><span class="company">{e.company}</span></span>
+              <span class="expand" aria-hidden="true">+</span>
+            </summary>
+            <p>{e.desc[lang]}</p>
+          </details>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<Testimonials client:load lang={lang} />
+
+<section id="contact" class="contact section" aria-labelledby="contact-title">
+  <div class="shell">
+    <p class="eyebrow">{c.contact.eyebrow}</p>
+    <h2 id="contact-title">{c.contact.title}</h2>
+    <div class="contact-bottom">
+      <div class="contact-actions">
+        <a class="contact-email" href={waLink(lang)} target="_blank" rel="noreferrer">{c.contact.whatsapp}<span class="sr-only"> (↗)</span></a>
+        <a class="text-link" href={`mailto:${site.email}`}>{c.contact.email}: {site.email}</a>
+      </div>
+      <p>{c.contact.lead}</p>
+    </div>
+  </div>
+</section>

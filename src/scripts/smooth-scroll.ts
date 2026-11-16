@@ -19,7 +19,7 @@ document.addEventListener('click',(event)=>{
  if(!target)return;
  event.preventDefault();cancel();
  const start=window.scrollY;
- const end=Math.min(Math.max(0,target.getBoundingClientRect().top+start-30),document.documentElement.scrollHeight-window.innerHeight);
+ const end=Math.min(Math.max(0,target.getBoundingClientRect().top+start-(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||30)),document.documentElement.scrollHeight-window.innerHeight);
  const finish=()=>{
   running=false;document.documentElement.style.removeProperty('scroll-behavior');
   if(location.hash!==hash)history.pushState(null,'',hash);

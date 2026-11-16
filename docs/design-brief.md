@@ -54,3 +54,10 @@ Light #DCCFE8, dark #0A080D. Selected Work is a text-only index with native expa
 
 ## Revision 2026-11-10
 Supplied logos (R mark, Raditya wordmark) are copied to public/brand and rendered as CSS alpha masks so they follow the two-color palette: the mark in the header, the wordmark in the footer. Design and Motion are enabled again with the existing Illustrator and Premiere workspace images, labeled as studies. Work rows show a muted thumbnail on desktop (from public/thumbnails) and a full preview inside the details. Added: availability line in the hero, a facts strip in About (all counts derived from data), a Tomo Scans line, a "What I can take on" label, experience grouped as Development / Design & motion / Community with a marker on current roles, a GitHub link in the footer, and CV download links that render only when a file path is set in src/data/portfolio.js. Project year and client type are intentionally omitted until supplied.
+
+## Revision — Indonesian default, packages, WhatsApp, reviews
+- Indonesian at `/`, English at `/en/` (hreflang alternates, ID | EN switch). All text lives in `src/data/copy.js` and `src/data/portfolio.js` as `{en,id}` pairs.
+- WhatsApp: header, hero, each package (prefilled message), contact. Number in `site.whatsapp` (confirm).
+- Packages section: rules instead of cards, launch price shown against the normal price while `launchOffer.active`.
+- Reviews: `Testimonials.jsx` reads the Google Sheets Apps Script URL (`PUBLIC_TESTIMONIALS_API_URL`, `.env`, gitignored); the section stays hidden until approved reviews exist. Form at `/ulasan/` and `/en/review/` posts with `no-cors` as "Not Yet Approved".
+- Section numbers come from CSS counters so the optional reviews section never breaks numbering.

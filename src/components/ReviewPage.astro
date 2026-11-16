@@ -1,0 +1,11 @@
+---
+import ReviewForm from "./ReviewForm.jsx";
+import { copy } from "../data/copy";
+const { lang = "id" } = Astro.props;
+const c = copy[lang].review;
+---
+<section class="section shell review-page" aria-labelledby="review-title">
+  <div class="section-heading"><p class="eyebrow">{copy[lang].testimonials.eyebrow}</p><div><h1 id="review-title" class="page-title">{c.title}</h1><p>{c.lead}</p></div></div>
+  <ReviewForm client:load lang={lang} />
+  <p><a class="text-link" href={lang === "id" ? "/" : "/en/"}>{c.back}</a></p>
+</section>
